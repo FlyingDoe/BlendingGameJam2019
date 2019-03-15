@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class myUI : MonoBehaviour
 {
-    public static UI Instance;
+    public static myUI Instance;
 
     [SerializeField]
     Slider weightSlider;
@@ -16,6 +16,8 @@ public class UI : MonoBehaviour
     [SerializeField] Text anchoNbr;
     [SerializeField] Text crustNbr;
     [SerializeField] Text oilllNbr;
+
+ 
 
     private void Awake()
     {

@@ -48,6 +48,25 @@ public class Collectibles : MonoBehaviour
         rd = GetComponent<Renderer>();
 
         gameObject.name = typeOfIngredient.ToString();
+
+        switch (typeOfIngredient)
+        {
+            case Ingredient.cheese:
+                break;
+            case Ingredient.mozzarella:
+                break;
+            case Ingredient.olive:
+                rd.material.mainTexture = TextureManager.Instance.OliveTex;
+                break;
+            case Ingredient.oil:
+                break;
+            case Ingredient.crust:
+                break;
+            case Ingredient.anchovy:
+                break;
+            default:
+                break;
+        }
     }
 
     void Start()
@@ -72,7 +91,7 @@ public class Collectibles : MonoBehaviour
                 PlayerBehavior.Instance.oliveNbr++;
                 break;
             case Ingredient.oil:
-                PlayerBehavior.Instance.oliveNbr++;
+                PlayerBehavior.Instance.oilllNbr++;
                 break;
             case Ingredient.crust:
                 PlayerBehavior.Instance.crustNbr++;
