@@ -29,6 +29,7 @@ public class SpaceShipAssembly : MonoBehaviour
         anchoPlaceHolder = rdArray[4];
         crustPlaceHolder = rdArray[5];
         oilllPlaceHolder = rdArray[6];
+
     }
 
     public void PlaceIngredients()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectibles
   - SpaceShip
+  - Bin
   layers:
   - Default
   - TransparentFX

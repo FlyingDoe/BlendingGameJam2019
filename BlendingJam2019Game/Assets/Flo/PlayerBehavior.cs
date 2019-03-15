@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    public UnityEvent OnPickUpObject;
+    public UnityEvent OnUseObject;
+
     public static PlayerBehavior Instance;
     public Transform Hand;
 
@@ -46,6 +51,14 @@ public class PlayerBehavior : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        if (OnPickUpObject == null)
+        {
+            OnPickUpObject = new UnityEvent();
+        }
+        if (OnUseObject == null)
+        {
+            OnUseObject = new UnityEvent();
+        }
     }
 
     void Start()
@@ -88,6 +101,14 @@ public class PlayerBehavior : MonoBehaviour
                     TryToPlaceObj(hit.collider.GetComponent<SpaceShipAssembly>());
                 }
             }
+            else if (hit.collider.tag == "Bin")
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    ThrowAwayAllIngredient();
+                }
+            }
+
         }
         else if (camTarget != null)
         {
@@ -96,6 +117,17 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         Debug.DrawRay(eyePosition, lookTowards * lookDistance, colRay);
+    }
+
+    private void ThrowAwayAllIngredient()
+    {
+        oliveNbr = 0;
+        cheesNbr = 0;
+        mozzaNbr = 0;
+        anchoNbr = 0;
+        crustNbr = 0;
+        oilllNbr = 0;
+        OnUseObject.Invoke();
     }
 
     private void TryToPickUpObj(Collectibles objLookedAt)
@@ -108,10 +140,12 @@ public class PlayerBehavior : MonoBehaviour
         {
             objLookedAt.PickUp();
         }
+        OnPickUpObject.Invoke();
     }
     private void TryToPlaceObj(SpaceShipAssembly ship)
     {
         ship.PlaceIngredients();
-        Debug.LogError("PLACE OBJ NOT IMPLEMENTED");
+        Debug.LogWarning("PLACE OBJ NOT IMPLEMENTED");
+        OnUseObject.Invoke();
     }
 }
