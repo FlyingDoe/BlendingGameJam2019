@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -42,9 +43,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public bool isSliding;
+        public float speed;
+        float speedMultiplier;
+        public float startSpeed;
         // Use this for initialization
         private void Start()
         {
+            speedMultiplier = 1;
+            isSliding = false;
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -57,10 +64,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
+        IEnumerator SpeedForSeconds()
+        {
+            speedMultiplier = 4;
+            yield return new WaitForSeconds(5f);
+            speedMultiplier = 1;
+        }
+
+        public void MangerLePiment()
+        {
+            StartCoroutine(SpeedForSeconds());
+        }
 
         // Update is called once per frame
         private void Update()
         {
+
+            if (Input.GetKeyDown(KeyCode.P)) MangerLePiment();
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -91,11 +111,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle + .5f;
         }
 
-
         private void FixedUpdate()
         {
-            float speed;
-            GetInput(out speed);
+
+            
+
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 
@@ -105,32 +125,192 @@ namespace UnityStandardAssets.Characters.FirstPerson
                                m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
+            
 
-
-            if (m_CharacterController.isGrounded)
+            //CED : gestion raycast collision pour connaitre la zone
+            if (Physics.Raycast(transform.position, -transform.up, out hitInfo, 1000))
             {
-                m_MoveDir.y = -m_StickToGroundForce;
-
-                if (m_Jump)
+                switch (hitInfo.collider.tag)
                 {
-                    m_MoveDir.y = m_JumpSpeed;
-                    PlayJumpSound();
-                    m_Jump = false;
-                    m_Jumping = true;
+                    case "FoodNormal":
+                        Debug.Log("walking on normal food");
+                        GetInput(out speed);
+                        m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
+                        m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
+                    case "FoodCollant":
+                        Debug.Log("walking on collant food");
+                        GetInput(out speed);
+                        m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
+                        m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
+                    case "FoodGlissant":
+                        Debug.Log("walking on glissant food");
+                        if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && !isSliding)
+                        {
+                            GetInput(out speed);
+
+                        }
+                        else
+                        {
+                            if(speed > 0)
+                            {
+                                isSliding = true;
+                            }
+                        }
+                        if (isSliding)
+                        {
+
+                            //si lache la touche sur le sol glissant
+                            if (speed > 0) speed -= 0.06f * speedMultiplier;
+
+                            if (speed < 1f)
+                            {
+                                speed = 0;
+                                isSliding = false;
+                            }
+                        }
+
+
+
+
+                        m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
+                        m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
+                    case "JumpingMozza":
+                        Debug.Log("jumping on mozza");
+                        m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
+                        m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed*3;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
+                       
+                    default:
+                        Debug.Log("walking on else");
+                        m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
+                        m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
                 }
             }
-            else
-            {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
-            }
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
-
-            ProgressStepCycle(speed);
-            UpdateCameraPosition(speed);
-
-            m_MouseLook.UpdateCursorLock();
+            Debug.Log(speed);
         }
 
 
