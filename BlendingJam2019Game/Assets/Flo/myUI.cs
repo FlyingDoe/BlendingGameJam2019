@@ -13,9 +13,9 @@ public class myUI : MonoBehaviour
     [SerializeField] Text oliveNbr;
     [SerializeField] Text cheesNbr;
     [SerializeField] Text mozzaNbr;
-    [SerializeField] Text anchoNbr;
-    [SerializeField] Text crustNbr;
+    [SerializeField] Text pepniNbr;
     [SerializeField] Text oilllNbr;
+    [SerializeField] Text pepprNbr;
 
     private void Awake()
     {
@@ -32,7 +32,8 @@ public class myUI : MonoBehaviour
         oliveNbr.text = PlayerBehavior.Instance.oliveNbr.ToString();
         cheesNbr.text = PlayerBehavior.Instance.cheesNbr.ToString();
         mozzaNbr.text = PlayerBehavior.Instance.mozzaNbr.ToString();
-        anchoNbr.text = PlayerBehavior.Instance.anchoNbr.ToString();
+        pepniNbr.text = PlayerBehavior.Instance.pepniNbr.ToString();
         oilllNbr.text = PlayerBehavior.Instance.oilllNbr.ToString();
+        pepprNbr.text = PlayerBehavior.Instance.pepprNbr.ToString();
     }
 }

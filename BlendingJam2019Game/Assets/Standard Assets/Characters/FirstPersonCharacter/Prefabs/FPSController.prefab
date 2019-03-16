@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 5400000}
   - component: {fileID: 8200000}
+  - component: {fileID: 95320510463918904}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Player
@@ -45,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 2.37, z: -4.04}
+  m_LocalPosition: {x: 1.3, y: 1, z: -2.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -544,6 +545,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679973766305998}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &95320510463918904
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4da285fd45ee4c4d8eeaf91e28021e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114054507237292622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,10 +655,12 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Hand: {fileID: 4264591347436594}
   pointOfView: {fileID: 2000000}
+  missilePrefab: {fileID: 114369862673994364, guid: 37266aba0e8b3ed4cadd07db5659059c,
+    type: 2}
   oliveNbr: 0
   cheesNbr: 0
   mozzaNbr: 0
-  anchoNbr: 0
+  pepniNbr: 0
   oilllNbr: 0
   pepprNbr: 0
 --- !u!114 &114698452817552650

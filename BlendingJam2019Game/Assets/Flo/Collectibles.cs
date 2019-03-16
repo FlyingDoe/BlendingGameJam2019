@@ -7,13 +7,13 @@ public class Collectibles : MonoBehaviour
     public bool canBePickedUp;
     private Renderer rd;
 
-    public enum Ingredient { cheese, mozzarella, olive, oil, anchovy , pepper}
+    public enum Ingredient { cheese, mozzarella, olive, oil, pepnivy , pepper}
     public Ingredient typeOfIngredient;
 
     public const int oliveWeight = 1;
     public const int cheesWeight = 1;
     public const int mozzaWeight = 1;
-    public const int anchoWeight = 2;
+    public const int pepniWeight = 2;
     public const int oilllWeight = 1;
     public const int pepprWeight = 1;
 
@@ -31,8 +31,8 @@ public class Collectibles : MonoBehaviour
                     return oliveWeight;
                 case Ingredient.oil:
                     return oilllWeight;
-                case Ingredient.anchovy:
-                    return anchoWeight;
+                case Ingredient.pepnivy:
+                    return pepniWeight;
                 case Ingredient.pepper:
                     return pepprWeight;
                 default:
@@ -45,7 +45,7 @@ public class Collectibles : MonoBehaviour
     private void Awake()
     {
         gameObject.tag = "Collectibles";
-        rd = GetComponent<Renderer>();
+        rd = GetComponentInChildren<Renderer>();
 
         gameObject.name = typeOfIngredient.ToString();
 
@@ -56,11 +56,11 @@ public class Collectibles : MonoBehaviour
             case Ingredient.mozzarella:
                 break;
             case Ingredient.olive:
-                rd.material.mainTexture = TextureManager.Instance.OliveTex;
+               // rd.material.mainTexture = TextureManager.Instance.OliveTex;
                 break;
             case Ingredient.oil:
                 break;
-            case Ingredient.anchovy:
+            case Ingredient.pepnivy:
                 break;
             default:
                 break;
@@ -91,8 +91,8 @@ public class Collectibles : MonoBehaviour
             case Ingredient.oil:
                 PlayerBehavior.Instance.oilllNbr++;
                 break;
-            case Ingredient.anchovy:
-                PlayerBehavior.Instance.anchoNbr++;
+            case Ingredient.pepnivy:
+                PlayerBehavior.Instance.pepniNbr++;
                 break;
             case Ingredient.pepper:
                 PlayerBehavior.Instance.pepprNbr++;

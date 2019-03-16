@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    private Animator anim;
+
     public UnityEvent OnPickUpObject;
     public UnityEvent OnUseObject;
 
@@ -14,6 +16,8 @@ public class PlayerBehavior : MonoBehaviour
 
     [SerializeField]
     private Camera pointOfView;
+    [SerializeField]
+    private MissileBehavior missilePrefab;
 
     private Collectibles camTarget;
 
@@ -35,7 +39,7 @@ public class PlayerBehavior : MonoBehaviour
                 oliveNbr * Collectibles.oliveWeight +
                 cheesNbr * Collectibles.cheesWeight +
                 mozzaNbr * Collectibles.mozzaWeight +
-                anchoNbr * Collectibles.anchoWeight +
+                pepniNbr * Collectibles.pepniWeight +
                 oilllNbr * Collectibles.oilllWeight +
                 pepprNbr * Collectibles.pepprWeight;
         }
@@ -44,7 +48,7 @@ public class PlayerBehavior : MonoBehaviour
     public int oliveNbr = 0;
     public int cheesNbr = 0;
     public int mozzaNbr = 0;
-    public int anchoNbr = 0;
+    public int pepniNbr = 0;
     public int oilllNbr = 0;
     public int pepprNbr = 0;
 
@@ -59,6 +63,8 @@ public class PlayerBehavior : MonoBehaviour
         {
             OnUseObject = new UnityEvent();
         }
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -108,18 +114,6 @@ public class PlayerBehavior : MonoBehaviour
                     ThrowAwayAllIngredient();
                 }
             }
-            else if (hit.collider.tag == "AxeCentral")
-            {
-
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    if(cheesNbr > 0)
-                    {
-                        cheesNbr--;
-                        GameObject.Find("PizzaSpin").GetComponent<Pizza>().StopTurning();
-                    }
-                }
-            }
 
         }
         else if (camTarget != null)
@@ -128,15 +122,23 @@ public class PlayerBehavior : MonoBehaviour
             camTarget = null;
         }
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            StartCoroutine(ShootMissile());
+        }
+
         Debug.DrawRay(eyePosition, lookTowards * lookDistance, colRay);
     }
 
+    // -------------------------------------------------------------
+
     private void ThrowAwayAllIngredient()
     {
+        anim.SetTrigger("Place");
         oliveNbr = 0;
         cheesNbr = 0;
         mozzaNbr = 0;
-        anchoNbr = 0;
+        pepniNbr = 0;
         oilllNbr = 0;
         pepprNbr = 0;
         OnUseObject.Invoke();
@@ -150,14 +152,41 @@ public class PlayerBehavior : MonoBehaviour
         }
         else
         {
+            anim.SetTrigger("Grab");
             objLookedAt.PickUp();
         }
         OnPickUpObject.Invoke();
     }
     private void TryToPlaceObj(SpaceShipAssembly ship)
     {
+        anim.SetTrigger("Place");
         ship.PlaceIngredients();
         Debug.LogWarning("PLACE OBJ NOT IMPLEMENTED");
         OnUseObject.Invoke();
     }
+
+    // -------------------------------------------------------------
+
+    private IEnumerator ShootMissile()
+    {
+        if (pepprNbr > 0 && oilllNbr > 0)
+        {
+            anim.SetTrigger("Shake");
+            pepprNbr--;
+            oilllNbr--;
+            yield return new WaitForSeconds(0.5f);
+            
+
+                MissileBehavior missile = Instantiate(missilePrefab, transform.position + transform.forward * 0.5f, Quaternion.identity);
+            missile.transform.LookAt(transform.position + transform.forward * 2);
+        }
+        else
+        {
+            Debug.LogWarning("PUT NOPE SOUND HERE");
+            yield return null;
+        }
+        OnUseObject.Invoke();
+    }
+
+
 }
