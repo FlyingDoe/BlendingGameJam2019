@@ -250,13 +250,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162770897538522}
-  m_LocalRotation: {x: -0.5252209, y: 0.4734375, z: 0.4734373, w: 0.52522105}
-  m_LocalPosition: {x: 0, y: -0.116, z: -0.016}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.182, z: -0.016}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4554617272511134}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 84.063}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4530635475124770
 Transform:
   m_ObjectHideFlags: 1
@@ -487,7 +487,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162770897538522}
-  m_Mesh: {fileID: 4300002, guid: 0a1d09292b9f6374cbb04521abc7b665, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c1b16cb1596a374b9ec41d3bf5f51dd, type: 3}
 --- !u!54 &54307694506783116
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -944,6 +944,7 @@ MonoBehaviour:
   missilePrefab: {fileID: 114369862673994364, guid: 37266aba0e8b3ed4cadd07db5659059c,
     type: 2}
   pizza: {fileID: 0}
+  ui: {fileID: 0}
   oliveNbr: 0
   cheesNbr: 0
   mozzaNbr: 0
