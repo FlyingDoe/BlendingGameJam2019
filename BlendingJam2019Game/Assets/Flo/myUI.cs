@@ -11,7 +11,6 @@ public class myUI : MonoBehaviour
     Slider weightSlider;
 
     [SerializeField] Text oliveNbr;
-    [SerializeField] Text cheesNbr;
     [SerializeField] Text mozzaNbr;
     [SerializeField] Text pepniNbr;
     [SerializeField] Text oilllNbr;
@@ -30,7 +29,6 @@ public class myUI : MonoBehaviour
         weightSlider.value = PlayerBehavior.Instance.CurrentWeight;
 
         oliveNbr.text = PlayerBehavior.Instance.oliveNbr.ToString();
-        cheesNbr.text = PlayerBehavior.Instance.cheesNbr.ToString();
         mozzaNbr.text = PlayerBehavior.Instance.mozzaNbr.ToString();
         pepniNbr.text = PlayerBehavior.Instance.pepniNbr.ToString();
         oilllNbr.text = PlayerBehavior.Instance.oilllNbr.ToString();
