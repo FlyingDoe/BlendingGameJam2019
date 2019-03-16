@@ -36,8 +36,12 @@ public class SpaceShipAssembly : MonoBehaviour
     public float acceleration = 0.001f;
     public float flyingLimit = 0.1f;
 
+    private ParticleSystem particleSystem;
+
     private void Awake()
     {
+        particleSystem = GetComponent<ParticleSystem>();
+        particleSystem.Pause();
         aS = GetComponent<AudioSource>();
 
         foreach (Renderer rd in GetComponentsInChildren<Renderer>())
@@ -117,6 +121,7 @@ public class SpaceShipAssembly : MonoBehaviour
     {
         if(canMove)
         {
+            particleSystem.Play();
             transform.position += new Vector3(0.0f, flyingSpeed, 0.0f);
             if (flyingSpeed < flyingLimit)
                 flyingSpeed += acceleration;
