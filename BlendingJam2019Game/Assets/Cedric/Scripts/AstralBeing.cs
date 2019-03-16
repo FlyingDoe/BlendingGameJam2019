@@ -18,14 +18,26 @@ public class AstralBeing : MonoBehaviour
 
     AudioSource aS_growling;
     AudioSource aS_effect;
+    Animator anim;
+
+    Quaternion initRotation;
 
     private void Awake()
     {
+        initRotation = transform.rotation;
+        anim = GetComponent<Animator>();
+
         aS_growling = GetComponents<AudioSource>()[0];
         aS_effect = GetComponents<AudioSource>()[1];
 
         aS_growling.loop = true;
-        aS_growling.loop = true;
+        aS_growling.playOnAwake = true;
+
+        aS_growling.clip = SfxManager.Instance.Sfx_growlLoop;
+        aS_growling.Play();
+
+        aS_effect.loop = false;
+        aS_effect.playOnAwake = false;
     }
 
     void Start()
@@ -49,6 +61,7 @@ public class AstralBeing : MonoBehaviour
             {
                 if (hit.collider.tag == "FoodNormal" || hit.collider.tag == "FoodCollant" || hit.collider.tag == "FoodGlissant" || hit.collider.tag == "JumpingMozza")
                 {
+                    anim.SetTrigger("nomTrig");
                     moveDirection = -moveSpeed;
                     hit.transform.gameObject.SetActive(false);
                     canChomp = true;
@@ -67,8 +80,6 @@ public class AstralBeing : MonoBehaviour
                 StartCoroutine(WaitBeforeChomp(timeBetweenChomps));
             }
         }
-
-
     }
 
     public void HitByMissile()
@@ -79,16 +90,18 @@ public class AstralBeing : MonoBehaviour
 
     IEnumerator WeirdRotation()
     {
+        anim.SetTrigger("OpenMouth");
         moveDirection = 0;
         for (int i = 0; i < 100; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(.3f);
             transform.localRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         }
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = initRotation;
         yield return new WaitForSeconds(1);
         moveDirection = moveSpeed;
         hitByMissile = false;
+        anim.SetTrigger("CloseMouth");
     }
 
     IEnumerator WaitBeforeChomp(int time)
@@ -97,5 +110,12 @@ public class AstralBeing : MonoBehaviour
         moveDirection = 0;
         yield return new WaitForSeconds(time);
         moveDirection = moveSpeed;
+        anim.SetTrigger("OpenMouth");
+    }
+
+    public void PlayNom()
+    {
+        aS_effect.clip = SfxManager.Instance.Sfx_eat;
+        aS_effect.Play();
     }
 }
