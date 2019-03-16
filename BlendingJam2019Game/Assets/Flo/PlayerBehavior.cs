@@ -174,10 +174,9 @@ public class PlayerBehavior : MonoBehaviour
             anim.SetTrigger("Shake");
             pepprNbr--;
             oilllNbr--;
-            yield return new WaitForSeconds(0.5f);
-            
+            yield return new WaitForSeconds(1.1f);
 
-                MissileBehavior missile = Instantiate(missilePrefab, transform.position + transform.forward * 0.5f, Quaternion.identity);
+            MissileBehavior missile = Instantiate(missilePrefab, transform.position + transform.forward * 0.5f, Quaternion.identity);
             missile.transform.LookAt(transform.position + transform.forward * 2);
         }
         else
