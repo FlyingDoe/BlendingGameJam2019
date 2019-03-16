@@ -14,6 +14,9 @@ public class CanvasManagerBehaviour : MonoBehaviour
     // ecran si Win
     private GameObject winMenu;
 
+    // ecran si fail
+    private GameObject failMenu;
+
     // index de la premiere scene de jeu
     private int firstGameSceneBuildIndex;
     // index de la derniere scene de jeu
@@ -34,6 +37,7 @@ public class CanvasManagerBehaviour : MonoBehaviour
 
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
         winMenu = GameObject.FindGameObjectWithTag("WinMenu");
+        failMenu = GameObject.FindGameObjectWithTag("FailMenu");
 
         // cherche les index des scenes de jeux
         bool first = true;
@@ -105,5 +109,12 @@ public class CanvasManagerBehaviour : MonoBehaviour
             nextLevelButton.SetActive(true);
             ++currentGameSceneBuildIndex;
         }
+    }
+
+    public void OnPlayerFailed()
+    {
+        // decharger la scene de jeu puis afficher l'ecran de Win !!!
+        SceneManager.UnloadSceneAsync(currentGameSceneBuildIndex);
+        failMenu.SetActive(true);
     }
 }

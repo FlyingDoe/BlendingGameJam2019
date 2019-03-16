@@ -103,8 +103,11 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         //    spawnCopy.RemoveAt(idx);
         //}
         pizzaPart = transform.gameObject;
-        //Mesh pizzaPartMesh = pizzaPart.GetComponent<MeshFilter>().mesh;
-
+        Mesh pizzaPartMesh = pizzaPart.GetComponent<MeshFilter>().mesh;
+        for(int i  = 0; i < pizzaPartMesh.vertexCount; ++i)
+        {
+            float distance = Vector3.Distance(pizzaPartMesh.vertices[i], pizzaPart.transform.position);
+        }
 
         
     }
