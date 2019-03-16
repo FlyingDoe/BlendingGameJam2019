@@ -36,7 +36,7 @@ public class MissileBehavior : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("triggered");
-        if (other.gameObject == ennemy.gameObject)
+        if (collision.gameObject == ennemy.gameObject)
         {
             Debug.Log("triggered ennemy");
 
