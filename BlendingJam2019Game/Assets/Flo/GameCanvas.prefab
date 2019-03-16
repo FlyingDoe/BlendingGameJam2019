@@ -515,14 +515,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.58391005, g: 0.6037764, b: 0.66176474, a: 1}
+  m_Color: {r: 0.9852941, g: 0.5469082, b: 0.2100995, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -944,14 +944,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.58391005, g: 0.6037764, b: 0.66176474, a: 1}
+  m_Color: {r: 1, g: 0.2689655, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0626b924325d1c34cafa6b22297f4e4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   oliveNbr: {fileID: 114204928677117590}
   cheesNbr: {fileID: 114186083856952968}
   mozzaNbr: {fileID: 114573610458694568}
-  pepniNbr: {fileID: 114169295730574690}
+  pepniNbr: {fileID: 114630951369508150}
   oilllNbr: {fileID: 114715763531349372}
   pepprNbr: {fileID: 114169295730574690}
 --- !u!114 &114810945643731738

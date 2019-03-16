@@ -45,7 +45,7 @@ public class Collectibles : MonoBehaviour
     private void Awake()
     {
         gameObject.tag = "Collectibles";
-        rd = GetComponent<Renderer>();
+        rd = GetComponentInChildren<Renderer>();
 
         gameObject.name = typeOfIngredient.ToString();
 
