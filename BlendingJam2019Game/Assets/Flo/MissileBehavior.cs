@@ -19,8 +19,7 @@ public class MissileBehavior : MonoBehaviour
         ennemy = GameObject.Find("Planete").GetComponent<AstralBeing>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Go forward
         if (moving)
@@ -36,7 +35,14 @@ public class MissileBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Explode();
+        Debug.Log("triggered");
+        if (other.gameObject == ennemy.gameObject)
+        {
+            Debug.Log("triggered ennemy");
+
+            ennemy.HitByMissile();
+            Explode();
+        }
     }
 
     private void Explode()
