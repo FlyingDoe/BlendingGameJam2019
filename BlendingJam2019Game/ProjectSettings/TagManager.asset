@@ -13,6 +13,8 @@ TagManager:
   - SpaceShip
   - SpawnPosition
   - Menu
+  - MainMenu
+  - WinMenu
   layers:
   - Default
   - TransparentFX
