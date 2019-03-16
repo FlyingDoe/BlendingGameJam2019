@@ -37,7 +37,7 @@ public class AstralBeing : MonoBehaviour
 
             if (Physics.Raycast(eyePosition, lookTowards, out hit, lookDistance))
             {
-                if (hit.collider.tag == "FoodNormal")
+                if (hit.collider.tag == "FoodNormal" || hit.collider.tag == "FoodCollant" || hit.collider.tag == "FoodGlissant" || hit.collider.tag == "JumpingMozza")
                 {
                     moveDirection = -moveSpeed;
                     hit.transform.gameObject.SetActive(false);
