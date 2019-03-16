@@ -110,4 +110,33 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
     {
 
     }
+
+    private void OnValidate()
+    {
+        float sum = 0;
+        for (int i = 0; i < pourcentages.Count; ++i)
+            sum += pourcentages[i];
+
+        if (sum > 1.0f)
+        {
+            float diff = (sum - 1.0f);
+            int i = 0;
+            while(diff > 0)
+            {
+                if (pourcentages[i] >= diff)
+                {
+                    pourcentages[i] -= diff;
+                    diff = 0;
+                }
+                else if(pourcentages[i] > 0.0f)
+                {
+                    diff -= pourcentages[i];
+                    pourcentages[i] = 0.0f;
+                }
+                ++i;
+            }
+            
+        }
+    }
+
 }
