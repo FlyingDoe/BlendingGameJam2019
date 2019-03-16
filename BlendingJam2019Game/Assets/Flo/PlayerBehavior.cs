@@ -141,6 +141,14 @@ public class PlayerBehavior : MonoBehaviour
         {
             StartCoroutine(ShootMissile());
         }
+        if (Input.GetKeyDown(KeyCode.P) && pepniNbr > 0)
+        {
+            GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().MangerLePiment();
+            pepprNbr--;
+            OnUseObject.Invoke();
+        }
+
+
 
         Debug.DrawRay(eyePosition, lookTowards * lookDistance, colRay);
     }

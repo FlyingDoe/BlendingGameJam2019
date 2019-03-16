@@ -113,7 +113,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void FixedUpdate()
         {
 
-            if (Input.GetKeyDown(KeyCode.P)) MangerLePiment();
             RotateView();
 
             // always move along the camera forward as it is the direction that it being aimed at
