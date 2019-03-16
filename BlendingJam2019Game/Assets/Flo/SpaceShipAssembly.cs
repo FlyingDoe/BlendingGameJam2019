@@ -10,20 +10,20 @@ public class SpaceShipAssembly : MonoBehaviour
     private int OliveNeeded = 0;
     private int CheesNeeded = 0;
     private int MozzaNeeded = 0;
-    private int AnchoNeeded = 0;
+    private int PepniNeeded = 0;
     private int OilllNeeded = 0;
 
     [SerializeField] private Renderer[] olivePlaceholders;
     [SerializeField] private Renderer[] cheesPlaceholders;
     [SerializeField] private Renderer[] mozzaPlaceholders;
-    [SerializeField] private Renderer[] anchoPlaceholders;
+    [SerializeField] private Renderer[] pepniPlaceholders;
     [SerializeField] private Renderer[] oilllPlaceholders;
 
     [SerializeField] private Material trnspMat;
     [SerializeField] private Material oliveMat;
     [SerializeField] private Material cheesMat;
     [SerializeField] private Material mozzaMat;
-    [SerializeField] private Material anchoMat;
+    [SerializeField] private Material pepniMat;
     [SerializeField] private Material oilllMat;
 
     private void Awake()
@@ -36,7 +36,7 @@ public class SpaceShipAssembly : MonoBehaviour
         OliveNeeded = olivePlaceholders.Length;
         CheesNeeded = cheesPlaceholders.Length;
         MozzaNeeded = mozzaPlaceholders.Length;
-        AnchoNeeded = anchoPlaceholders.Length;
+        PepniNeeded = pepniPlaceholders.Length;
         OilllNeeded = oilllPlaceholders.Length;
 
     }
@@ -46,7 +46,7 @@ public class SpaceShipAssembly : MonoBehaviour
         PlaceOneIngred(ref OliveNeeded, ref player.oliveNbr, ref olivePlaceholders, ref oliveMat);
         PlaceOneIngred(ref CheesNeeded, ref player.cheesNbr, ref cheesPlaceholders, ref cheesMat);
         PlaceOneIngred(ref MozzaNeeded, ref player.mozzaNbr, ref mozzaPlaceholders, ref mozzaMat);
-        PlaceOneIngred(ref AnchoNeeded, ref player.anchoNbr, ref anchoPlaceholders, ref anchoMat);
+        PlaceOneIngred(ref PepniNeeded, ref player.pepniNbr, ref pepniPlaceholders, ref pepniMat);
         PlaceOneIngred(ref OilllNeeded, ref player.oilllNbr, ref oilllPlaceholders, ref oilllMat);
 
         CheckWin();
@@ -57,7 +57,7 @@ public class SpaceShipAssembly : MonoBehaviour
         if (OliveNeeded == 0 &&
              CheesNeeded == 0 &&
              MozzaNeeded == 0 &&
-             AnchoNeeded == 0 &&
+             PepniNeeded == 0 &&
              OilllNeeded == 0)
         {
             Debug.LogError("WINGAME NOT IMPLEMENTED");
