@@ -8,15 +8,18 @@ public class AstralBeing : MonoBehaviour
     private RaycastHit hit;
     private Vector3 eyePosition;
     private Vector3 lookTowards;
-    private float lookDistance = 17.0f;
+    private float lookDistance = 40.0f;
     private int moveDirection = 3;
     public int moveSpeed = 3;
     private Vector3 initPos;
     private bool canChomp;
     public int timeBetweenChomps = 5;
+    public ParticleSystem burst;
+    private bool hitByMissile;
     // Use this for initialization
     void Start()
     {
+        hitByMissile = false;
         canChomp = true;
         initPos = transform.position;
         moveSpeed = moveDirection;
@@ -25,27 +28,51 @@ public class AstralBeing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+ moveDirection);
-        eyePosition = transform.position + transform.forward * 0.4f;
-        lookTowards = transform.forward;
-
-        if (Physics.Raycast(eyePosition, lookTowards, out hit, lookDistance))
+        if (Input.GetKeyDown(KeyCode.J)) HitByMissile();
+        if (!hitByMissile)
         {
-            if (hit.collider.tag == "FoodNormal")
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + moveDirection);
+            eyePosition = transform.position + transform.forward * 0.4f;
+            lookTowards = transform.forward;
+
+            if (Physics.Raycast(eyePosition, lookTowards, out hit, lookDistance))
             {
-                moveDirection = -moveSpeed;
-                hit.transform.gameObject.SetActive(false);
-                canChomp = true;
+                if (hit.collider.tag == "FoodNormal")
+                {
+                    moveDirection = -moveSpeed;
+                    hit.transform.gameObject.SetActive(false);
+                    canChomp = true;
+                    burst.Play();
+                    transform.localScale *= 1.05f;
+                }
 
             }
-
+            if (transform.position.z < initPos.z && canChomp)
+            {
+                StartCoroutine(WaitBeforeChomp(timeBetweenChomps));
+            }
         }
-        if (transform.position.z < initPos.z && canChomp)
+        
+
+    }
+
+    public void HitByMissile()
+    {
+        hitByMissile = true;
+        StartCoroutine(WeirdRotation());
+    }
+
+    IEnumerator WeirdRotation()
+    {
+        moveDirection = 0;
+        for (int i = 0; i <100; i++)
         {
-            Debug.Log("back at init poe");
-            StartCoroutine(WaitBeforeChomp(timeBetweenChomps));
+            yield return new WaitForSeconds(0.1f);
+            transform.localRotation = Quaternion.Euler(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360));
         }
-
+        transform.localRotation = Quaternion.Euler(0,0,0);
+        moveDirection = moveSpeed;
+        hitByMissile = false;
     }
 
     IEnumerator WaitBeforeChomp(int time)
