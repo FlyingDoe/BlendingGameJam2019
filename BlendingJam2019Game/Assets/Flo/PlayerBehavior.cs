@@ -32,6 +32,8 @@ public class PlayerBehavior : MonoBehaviour
     public const int maxWeight = 3;
     public Pizza pizza;
 
+    public myUI ui;
+
     public int CurrentWeight
     {
         get
@@ -124,6 +126,7 @@ public class PlayerBehavior : MonoBehaviour
                     Debug.Log("slowed pillar");
                     pizza.StopTurning();
                     mozzaNbr--;
+                    ui.UpdateValues();
                 }
             }
 
