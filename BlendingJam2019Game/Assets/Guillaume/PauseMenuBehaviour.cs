@@ -45,12 +45,14 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     public void OnRetryButtonClicked()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        menu.SetActive(false);
         Time.timeScale = 1.0f;
+        CanvasManagerBehaviour.instance.OnPlayButtonClicked();
     }
 
     public void OnQuitButtonCLicked()
     {
-
+        CanvasManagerBehaviour.instance.OnQuitButtonQuit();
     }
 }
