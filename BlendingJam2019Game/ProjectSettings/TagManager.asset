@@ -17,6 +17,7 @@ TagManager:
   - WinMenu
   - FoodCentralPiece
   - AxeCentral
+  - Ennemy
   layers:
   - Default
   - TransparentFX

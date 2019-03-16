@@ -11,10 +11,12 @@ public class MissileBehavior : MonoBehaviour
     private bool moving = true;
 
     AudioSource aS;
+    private AstralBeing ennemy;
 
     private void Awake()
     {
         aS = GetComponent<AudioSource>();
+        ennemy = GameObject.Find("Planete").GetComponent<AstralBeing>();
     }
 
     // Update is called once per frame
@@ -34,8 +36,12 @@ public class MissileBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("triggered");
         if (other.tag == "Ennemy")
         {
+            Debug.Log("triggered ennemy");
+
+            ennemy.HitByMissile();
             Explode();
         }
     }

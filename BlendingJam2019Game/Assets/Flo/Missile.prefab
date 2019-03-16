@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4131425225113066}
   - component: {fileID: 114369862673994364}
   - component: {fileID: 82086985550786386}
+  - component: {fileID: 136622610740689018}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -86,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270818016247604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5666382, y: 0.255, z: -1.8067331}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4379257649451784}
@@ -308,6 +309,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+--- !u!136 &136622610740689018
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270818016247604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.41
+  m_Height: 1.61
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.27833664}
 --- !u!198 &198450274050882238
 ParticleSystem:
   m_ObjectHideFlags: 1
