@@ -100,6 +100,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
             int idx = Random.Range(0, spawnCopy.Count - 1);
 
             ingredientSpawned[i].transform.position = spawnCopy[idx].transform.position;
+            ingredientSpawned[i].transform.parent = pizzaPart.transform;
             spawnCopy.RemoveAt(idx);
         }
 
