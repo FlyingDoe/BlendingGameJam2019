@@ -35,7 +35,9 @@ public class SpaceShipAssembly : MonoBehaviour
     private float flyingSpeed = 0.0f;
     public float acceleration = 0.001f;
     public float flyingLimit = 0.1f;
-
+    public ParticleSystem olive1;
+    public ParticleSystem olive2;
+    public ParticleSystem olive3;
     private ParticleSystem particleSystem;
 
     private void Awake()
@@ -44,7 +46,7 @@ public class SpaceShipAssembly : MonoBehaviour
         particleSystem.Pause();
         aS = GetComponent<AudioSource>();
 
-        foreach (Renderer rd in GetComponentsInChildren<Renderer>())
+        foreach (Renderer rd in GetComponentsInChildren<MeshRenderer>())
         {
             rd.material = trnspMat;
         }
@@ -119,7 +121,8 @@ public class SpaceShipAssembly : MonoBehaviour
 
     private void Update()
     {
-        if(canMove)
+        if(Input.GetKeyDown(KeyCode.L)) Launch();
+        if (canMove)
         {
             particleSystem.Play();
             transform.position += new Vector3(0.0f, flyingSpeed, 0.0f);
@@ -133,7 +136,10 @@ public class SpaceShipAssembly : MonoBehaviour
         
         Quaternion initialRotation = transform.localRotation;
         //Quaternion.Euler(Vector3.SmoothDamp(transform.rotation.eulerAngles, target, ref velocity, Time.fixedTime));
-        for(int i = 0; i < 100; ++i)
+        olive1.Play();
+        olive2.Play();
+        olive3.Play();
+        for (int i = 0; i < 100; ++i)
         {
             yield return new WaitForSeconds(.05f);
             transform.localRotation = Quaternion.Euler(UnityEngine.Random.Range(initialRotation.x - 1, initialRotation.x + 1),
