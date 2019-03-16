@@ -17,8 +17,6 @@ public class myUI : MonoBehaviour
     [SerializeField] Text crustNbr;
     [SerializeField] Text oilllNbr;
 
- 
-
     private void Awake()
     {
         weightSlider.minValue = 0;
@@ -35,7 +33,6 @@ public class myUI : MonoBehaviour
         cheesNbr.text = PlayerBehavior.Instance.cheesNbr.ToString();
         mozzaNbr.text = PlayerBehavior.Instance.mozzaNbr.ToString();
         anchoNbr.text = PlayerBehavior.Instance.anchoNbr.ToString();
-        crustNbr.text = PlayerBehavior.Instance.crustNbr.ToString();
         oilllNbr.text = PlayerBehavior.Instance.oilllNbr.ToString();
     }
 }
