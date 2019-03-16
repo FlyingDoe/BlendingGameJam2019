@@ -8,7 +8,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
     private GameObject pizzaPart;
 
     // ingredients a spwaner : prefab a glisser dans le spawner
-    private List<GameObject> ingredientsType = new List<GameObject>();
+    private Collectibles[] ingredientsType;
     
     // pourcentage de presence de chaque ingredient
     //[Range(0.0f, 1.0f)]
@@ -24,7 +24,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
 
     // list d'ingredients spawnes
     [SerializeField]
-    private List<GameObject> ingredientSpawned = new List<GameObject>();
+    private List<Collectibles> ingredientSpawned = new List<Collectibles>();
 
 
     // Use this for initialization
@@ -109,7 +109,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         
     }
 
-    public void setIngredients(List<float> _percentages, List<GameObject> _ingredientTypes)
+    public void setIngredients(List<float> _percentages, Collectibles[] _ingredientTypes)
     {
         // remplissage des pourcentages manquant a 0.0f
         pourcentages = _percentages;
@@ -122,12 +122,12 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         IngredientsInventory();
 
         // instantiation des ingredients
-        for (int i = 0; i < ingredientsType.Count; ++i)
+        for (int i = 0; i < ingredientsType.Length; ++i)
         {
             print("instantiate " + numIngredients[i] + " x " + i);
             for (int j = 0; j < numIngredients[i]; ++j)
             {
-                GameObject currentObject = Instantiate(ingredientsType[i], transform);
+                Collectibles currentObject = Instantiate(ingredientsType[i], transform);
                 ingredientSpawned.Add(currentObject);
             }
         }
@@ -154,7 +154,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
     {
         numIngredients = new List<int>();
         int sumIngredient = 0;
-        for (int i = 0; i < ingredientsType.Count; ++i)
+        for (int i = 0; i < ingredientsType.Length; ++i)
         {
             numIngredients.Add((int)(spawnPoints.Count * pourcentages[i]));
             sumIngredient += numIngredients[i];
@@ -163,7 +163,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         // check somme du nombre total d'ingredient
         while (sumIngredient < spawnPoints.Count)
         {
-            for (int i = 0; i < ingredientsType.Count; ++i)
+            for (int i = 0; i < ingredientsType.Length; ++i)
             {
                 if (numIngredients[i] < spawnPoints.Count * pourcentages[i])
                 {

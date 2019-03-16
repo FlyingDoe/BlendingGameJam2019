@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AstralBeing : MonoBehaviour
 {
-
     private RaycastHit hit;
     private Vector3 eyePosition;
     private Vector3 lookTowards;
@@ -16,7 +15,19 @@ public class AstralBeing : MonoBehaviour
     public int timeBetweenChomps = 5;
     public ParticleSystem burst;
     private bool hitByMissile;
-    // Use this for initialization
+
+    AudioSource aS_growling;
+    AudioSource aS_effect;
+
+    private void Awake()
+    {
+        aS_growling = GetComponents<AudioSource>()[0];
+        aS_effect = GetComponents<AudioSource>()[1];
+
+        aS_growling.loop = true;
+        aS_growling.loop = true;
+    }
+
     void Start()
     {
         hitByMissile = false;
@@ -25,7 +36,6 @@ public class AstralBeing : MonoBehaviour
         moveSpeed = moveDirection;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J)) HitByMissile();
@@ -52,7 +62,7 @@ public class AstralBeing : MonoBehaviour
                 StartCoroutine(WaitBeforeChomp(timeBetweenChomps));
             }
         }
-        
+
 
     }
 
@@ -65,12 +75,12 @@ public class AstralBeing : MonoBehaviour
     IEnumerator WeirdRotation()
     {
         moveDirection = 0;
-        for (int i = 0; i <100; i++)
+        for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            transform.localRotation = Quaternion.Euler(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360));
+            transform.localRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         }
-        transform.localRotation = Quaternion.Euler(0,0,0);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         yield return new WaitForSeconds(1);
         moveDirection = moveSpeed;
         hitByMissile = false;
