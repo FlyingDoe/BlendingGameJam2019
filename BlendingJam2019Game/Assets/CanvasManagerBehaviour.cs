@@ -22,6 +22,8 @@ public class CanvasManagerBehaviour : MonoBehaviour
     // index de la scene de jeu actuelle
     private int currentGameSceneBuildIndex;
 
+    [SerializeField] private Transform loadingScreenObj;
+
     // nextlevel button en public (un peu degueu mais va plus vite)
     public GameObject nextLevelButton;
 
@@ -43,7 +45,7 @@ public class CanvasManagerBehaviour : MonoBehaviour
 
             if (sceneName.StartsWith("_main"))
             {
-                if(first)
+                if (first)
                 {
                     print("firstGameSceneBuildIndex = " + i);
                     firstGameSceneBuildIndex = i;
@@ -57,16 +59,31 @@ public class CanvasManagerBehaviour : MonoBehaviour
         currentGameSceneBuildIndex = firstGameSceneBuildIndex;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnPlayButtonClicked()
     {
+        StartCoroutine(LoadLevel(1));
+    }
 
-        SceneManager.LoadScene(1);
+    private IEnumerator LoadLevel(int i)
+    {
+        AsyncOperation async;
+
+        mainMenu.SetActive(false);
+        loadingScreenObj.gameObject.SetActive(true);
+
+        async = SceneManager.LoadSceneAsync(1);
+        async.allowSceneActivation = false;
+        while (async.isDone == false)
+        {
+            //slider.value = async.progress;
+            if (async.progress == 0.9f)
+            {
+                //slider.value = 1f;
+                async.allowSceneActivation = true;
+            }
+            yield return null;
+        }
     }
 
     public void OnQuitButtonQuit()

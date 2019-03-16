@@ -11,6 +11,7 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private AudioClip sfx_cork;
     [SerializeField] private AudioClip sfx_growlLoop;
     [SerializeField] private AudioClip sfx_eat;
+    [SerializeField] private AudioClip sfx_pain;
     [SerializeField] private AudioClip[] sfx_squish;
 
     public AudioClip Sfx_rocketLoop
@@ -63,6 +64,13 @@ public class SfxManager : MonoBehaviour
         get
         {
             return sfx_eat;
+        }
+    }
+    public AudioClip Sfx_pain
+    {
+        get
+        {
+            return sfx_pain;
         }
     }
 

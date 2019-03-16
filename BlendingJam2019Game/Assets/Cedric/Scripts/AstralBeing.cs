@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AstralBeing : MonoBehaviour
 {
+    private const int rotationLoopNbr = 82;
     private RaycastHit hit;
     private Vector3 eyePosition;
     private Vector3 lookTowards;
@@ -53,11 +54,12 @@ public class AstralBeing : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J)) HitByMissile();
         if (!hitByMissile)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + moveDirection);
+            //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + moveDirection);
+            transform.Translate(Vector3.forward * moveDirection);
             eyePosition = transform.position + transform.forward * 0.4f;
             lookTowards = transform.forward;
 
-            if (Physics.Raycast(eyePosition, lookTowards, out hit, transform.localScale.x /1.5f))
+            if (Physics.Raycast(eyePosition, lookTowards, out hit, transform.localScale.x / 1.5f))
             {
                 if (hit.collider.tag == "FoodNormal" || hit.collider.tag == "FoodCollant" || hit.collider.tag == "FoodGlissant" || hit.collider.tag == "JumpingMozza")
                 {
@@ -68,7 +70,7 @@ public class AstralBeing : MonoBehaviour
                     burst.Play();
                     transform.localScale *= 1.03f;
                 }
-                else if(hit.collider.tag == "FoodCentralPiece")
+                else if (hit.collider.tag == "FoodCentralPiece")
                 {
                     moveDirection = -moveSpeed;
                     canChomp = true;
@@ -90,9 +92,10 @@ public class AstralBeing : MonoBehaviour
 
     IEnumerator WeirdRotation()
     {
+        PlayWeirdSound();
         anim.SetTrigger("OpenMouth");
         moveDirection = 0;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < rotationLoopNbr; i++)
         {
             yield return new WaitForSeconds(.3f);
             transform.localRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
@@ -116,6 +119,11 @@ public class AstralBeing : MonoBehaviour
     public void PlayNom()
     {
         aS_effect.clip = SfxManager.Instance.Sfx_eat;
+        aS_effect.Play();
+    }
+    public void PlayWeirdSound()
+    {
+        aS_effect.clip = SfxManager.Instance.Sfx_pain;
         aS_effect.Play();
     }
 }
