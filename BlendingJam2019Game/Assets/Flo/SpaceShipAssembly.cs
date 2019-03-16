@@ -28,6 +28,11 @@ public class SpaceShipAssembly : MonoBehaviour
     [SerializeField] private Material pepniMat;
     [SerializeField] private Material oilllMat;
 
+    private bool canMove = false;
+    private float flyingSpeed = 0.0f;
+    public float acceleration = 0.001f;
+    public float flyingLimit = 0.1f;
+
     private void Awake()
     {
         aS = GetComponent<AudioSource>();
@@ -69,6 +74,8 @@ public class SpaceShipAssembly : MonoBehaviour
              PepniNeeded == 0 &&
              OilllNeeded == 0)
         {
+            // faire appel a Launch !!!!
+            Launch();
             Debug.LogError("WINGAME NOT IMPLEMENTED");
         }
     }
@@ -87,4 +94,45 @@ public class SpaceShipAssembly : MonoBehaviour
             }
         }
     }
+
+    public void Launch()
+    {
+        // donne fonctions a executer a coroutine
+        //coroutine = WaitAndPrint(2.0f);
+        //StartCoroutine(coroutine);
+
+        // 1) fusee giggle pendant qq secondes
+        StartCoroutine(Giggle(10.0f));
+        // 2) fusee decole
+        
+    }
+
+    private void Update()
+    {
+        if(canMove)
+        {
+            transform.position += new Vector3(0.0f, flyingSpeed, 0.0f);
+            if (flyingSpeed < flyingLimit)
+                flyingSpeed += acceleration;
+        }
+    }
+
+    private IEnumerator Giggle(float giggleTime)
+    {
+        
+        Quaternion initialRotation = transform.localRotation;
+        //Quaternion.Euler(Vector3.SmoothDamp(transform.rotation.eulerAngles, target, ref velocity, Time.fixedTime));
+        for(int i = 0; i < 100; ++i)
+        {
+            yield return new WaitForSeconds(.05f);
+            transform.localRotation = Quaternion.Euler(UnityEngine.Random.Range(initialRotation.x - 1, initialRotation.x + 1),
+                UnityEngine.Random.Range(initialRotation.y - 1, initialRotation.y + 1),
+                UnityEngine.Random.Range(initialRotation.z - 1, initialRotation.z + 1));
+        }
+        transform.localRotation = initialRotation;
+        canMove = true; 
+    }
+
+
+
 }

@@ -163,7 +163,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         m_MouseLook.UpdateCursorLock();
                         break;
                     case "FoodCollant":
-                       // Debug.Log("walking on collant food");
                         GetInput(out speed);
                         m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
                         m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
