@@ -246,8 +246,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1022224445930746}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 1, z: -2.8}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 40, z: -29.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637450764903298}
@@ -871,6 +871,7 @@ MonoBehaviour:
   pointOfView: {fileID: 20265085333477880}
   missilePrefab: {fileID: 114369862673994364, guid: 37266aba0e8b3ed4cadd07db5659059c,
     type: 2}
+  pizza: {fileID: 0}
   oliveNbr: 0
   cheesNbr: 0
   mozzaNbr: 0

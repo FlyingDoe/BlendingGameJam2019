@@ -30,6 +30,7 @@ public class PlayerBehavior : MonoBehaviour
     Color colRay = Color.white;
 
     public const int maxWeight = 3;
+    public Pizza pizza;
 
     public int CurrentWeight
     {
@@ -112,6 +113,17 @@ public class PlayerBehavior : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     ThrowAwayAllIngredient();
+                }
+            }
+            else if (hit.collider.tag == "AxeCentral")
+            {
+                Debug.Log("hitting axe");
+                if (Input.GetButtonDown("Fire1") && mozzaNbr > 0)
+                {
+                    //slow pillar
+                    Debug.Log("slowed pillar");
+                    pizza.StopTurning();
+                    mozzaNbr--;
                 }
             }
 
