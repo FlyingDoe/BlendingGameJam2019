@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Collectibles : MonoBehaviour
 {
     public bool canBePickedUp;
     private Renderer rd;
+    private AudioSource aS;
 
-    public enum Ingredient { cheese, mozzarella, olive, oil, pepnivy , pepper}
+    public enum Ingredient { cheese, mozzarella, olive, oil, pepnivy, pepper }
     public Ingredient typeOfIngredient;
 
     public const int oliveWeight = 1;
@@ -46,23 +48,32 @@ public class Collectibles : MonoBehaviour
     {
         gameObject.tag = "Collectibles";
         rd = GetComponentInChildren<Renderer>();
+        aS = GetComponentInChildren<AudioSource>();
 
         gameObject.name = typeOfIngredient.ToString();
+
+        aS.playOnAwake = false;
+        aS.loop = false;
 
         switch (typeOfIngredient)
         {
             case Ingredient.cheese:
+                aS.clip = SfxManager.Instance.Sfx_squish;
                 break;
             case Ingredient.mozzarella:
+                aS.clip = SfxManager.Instance.Sfx_squish;
                 break;
             case Ingredient.olive:
-               // rd.material.mainTexture = TextureManager.Instance.OliveTex;
+                aS.clip = SfxManager.Instance.Sfx_squish;
                 break;
             case Ingredient.oil:
+                aS.clip = SfxManager.Instance.Sfx_cork;
                 break;
             case Ingredient.pepnivy:
+                aS.clip = SfxManager.Instance.Sfx_squish;
                 break;
             default:
+                aS.clip = SfxManager.Instance.Sfx_squish;
                 break;
         }
     }
@@ -100,8 +111,10 @@ public class Collectibles : MonoBehaviour
             default:
                 break;
         }
+        rd.enabled = false;
+        aS.Play();
 
-        Destroy(gameObject);
+        Destroy(gameObject, aS.clip.length);
     }
 
     public void StartGlowing(bool positive)
