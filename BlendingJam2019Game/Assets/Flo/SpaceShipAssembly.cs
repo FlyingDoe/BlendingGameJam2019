@@ -14,12 +14,14 @@ public class SpaceShipAssembly : MonoBehaviour
     private int MozzaNeeded = 0;
     private int PepniNeeded = 0;
     private int OilllNeeded = 0;
+    private int PepprNeeded = 0;
 
     [SerializeField] private Renderer[] olivePlaceholders;
     [SerializeField] private Renderer[] cheesPlaceholders;
     [SerializeField] private Renderer[] mozzaPlaceholders;
     [SerializeField] private Renderer[] pepniPlaceholders;
     [SerializeField] private Renderer[] oilllPlaceholders;
+    [SerializeField] private Renderer[] pepprPlaceholders;
 
     [SerializeField] private Material trnspMat;
     [SerializeField] private Material oliveMat;
@@ -27,6 +29,7 @@ public class SpaceShipAssembly : MonoBehaviour
     [SerializeField] private Material mozzaMat;
     [SerializeField] private Material pepniMat;
     [SerializeField] private Material oilllMat;
+    [SerializeField] private Material pepprMat;
 
     private bool canMove = false;
     private float flyingSpeed = 0.0f;
@@ -47,6 +50,7 @@ public class SpaceShipAssembly : MonoBehaviour
         MozzaNeeded = mozzaPlaceholders.Length;
         PepniNeeded = pepniPlaceholders.Length;
         OilllNeeded = oilllPlaceholders.Length;
+        PepprNeeded = pepprPlaceholders.Length;
 
     }
 
@@ -57,6 +61,7 @@ public class SpaceShipAssembly : MonoBehaviour
         PlaceOneIngred(ref MozzaNeeded, ref player.mozzaNbr, ref mozzaPlaceholders, ref mozzaMat);
         PlaceOneIngred(ref PepniNeeded, ref player.pepniNbr, ref pepniPlaceholders, ref pepniMat);
         PlaceOneIngred(ref OilllNeeded, ref player.oilllNbr, ref oilllPlaceholders, ref oilllMat);
+        PlaceOneIngred(ref PepprNeeded, ref player.pepprNbr, ref pepprPlaceholders, ref pepprMat);
         if (playSound)
         {
             aS.clip = SfxManager.Instance.Sfx_squish;
@@ -72,7 +77,8 @@ public class SpaceShipAssembly : MonoBehaviour
              CheesNeeded == 0 &&
              MozzaNeeded == 0 &&
              PepniNeeded == 0 &&
-             OilllNeeded == 0)
+             OilllNeeded == 0 &&
+             PepprNeeded == 0)
         {
             // faire appel a Launch !!!!
             Launch();

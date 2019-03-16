@@ -19,7 +19,7 @@ public class Pizza : MonoBehaviour {
 
     public void StopTurning()
     {
-        StartCoroutine(DelayPizzaRestart(10));
+        StartCoroutine(DelayPizzaRestart(20));
     }
 
     IEnumerator DelayPizzaRestart(int time)
