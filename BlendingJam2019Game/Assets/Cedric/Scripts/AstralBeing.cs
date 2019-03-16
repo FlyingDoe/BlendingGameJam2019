@@ -70,7 +70,10 @@ public class AstralBeing : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             transform.localRotation = Quaternion.Euler(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360));
         }
-
+        transform.localRotation = Quaternion.Euler(0,0,0);
+        yield return new WaitForSeconds(1);
+        moveDirection = moveSpeed;
+        hitByMissile = false;
     }
 
     IEnumerator WaitBeforeChomp(int time)
