@@ -8,6 +8,9 @@ TagManager:
   - FoodCollant
   - FoodGlissant
   - JumpingMozza
+  - Collectibles
+  - Bin
+  - SpaceShip
   layers:
   - Default
   - TransparentFX
