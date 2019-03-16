@@ -7,14 +7,16 @@ public class MissileBehavior : MonoBehaviour
 {
     [SerializeField]
     float speed = 0.01f;
-    private float lifetime = 5f;
+    private float lifetime = 50f;
     private bool moving = true;
 
     AudioSource aS;
+    private AstralBeing ennemy;
 
     private void Awake()
     {
         aS = GetComponent<AudioSource>();
+        ennemy = GameObject.Find("Planete").GetComponent<AstralBeing>();
     }
 
     // Update is called once per frame
@@ -32,12 +34,9 @@ public class MissileBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Ennemy")
-        {
-            Explode();
-        }
+        Explode();
     }
 
     private void Explode()

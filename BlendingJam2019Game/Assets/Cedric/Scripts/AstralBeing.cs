@@ -49,6 +49,18 @@ public class AstralBeing : MonoBehaviour
         moveSpeed = moveDirection;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        if (other.tag == "Missile" && !hitByMissile)
+        {
+            Debug.Log("triggerhit");
+
+            HitByMissile();
+        }
+    }
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J)) HitByMissile();
