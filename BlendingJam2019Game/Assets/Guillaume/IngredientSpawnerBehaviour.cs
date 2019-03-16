@@ -124,7 +124,6 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         // instantiation des ingredients
         for (int i = 0; i < ingredientsType.Length; ++i)
         {
-            print("instantiate " + numIngredients[i] + " x " + i);
             for (int j = 0; j < numIngredients[i]; ++j)
             {
                 Collectibles currentObject = Instantiate(ingredientsType[i], transform);
@@ -158,7 +157,6 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         {
             numIngredients.Add((int)(spawnPoints.Count * pourcentages[i]));
             sumIngredient += numIngredients[i];
-            print("ingredients " + i + " : " + numIngredients[i]);
         }
         // check somme du nombre total d'ingredient
         while (sumIngredient < spawnPoints.Count)
@@ -185,7 +183,6 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
             if (tr[i].gameObject.tag == "SpawnPosition")
                 spawnPoints.Add(tr[i].gameObject);
         }
-        print("num spawnPoints = " + spawnPoints.Count);
     }
 
     // Update is called once per frame
