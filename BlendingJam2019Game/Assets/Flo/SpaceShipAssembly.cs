@@ -6,6 +6,8 @@ using UnityEngine;
 public class SpaceShipAssembly : MonoBehaviour
 {
     private PlayerBehavior player { get { return PlayerBehavior.Instance; } }
+    private AudioSource aS;
+    bool playSound = false;
 
     private int OliveNeeded = 0;
     private int CheesNeeded = 0;
@@ -28,6 +30,8 @@ public class SpaceShipAssembly : MonoBehaviour
 
     private void Awake()
     {
+        aS = GetComponent<AudioSource>();
+
         foreach (Renderer rd in GetComponentsInChildren<Renderer>())
         {
             rd.material = trnspMat;
@@ -48,7 +52,12 @@ public class SpaceShipAssembly : MonoBehaviour
         PlaceOneIngred(ref MozzaNeeded, ref player.mozzaNbr, ref mozzaPlaceholders, ref mozzaMat);
         PlaceOneIngred(ref PepniNeeded, ref player.pepniNbr, ref pepniPlaceholders, ref pepniMat);
         PlaceOneIngred(ref OilllNeeded, ref player.oilllNbr, ref oilllPlaceholders, ref oilllMat);
-
+        if (playSound)
+        {
+            aS.clip = SfxManager.Instance.Sfx_squish;
+            aS.Play();
+        }
+        playSound = false;
         CheckWin();
     }
 
@@ -74,6 +83,7 @@ public class SpaceShipAssembly : MonoBehaviour
                 playerNbr--;
                 nbrNeeded--;
                 rdTab[i].material = newMat;
+                playSound = true;
             }
         }
     }
