@@ -7,15 +7,15 @@ public class Collectibles : MonoBehaviour
     public bool canBePickedUp;
     private Renderer rd;
 
-    public enum Ingredient { cheese, mozzarella, olive, oil, crust, anchovy }
+    public enum Ingredient { cheese, mozzarella, olive, oil, anchovy , pepper}
     public Ingredient typeOfIngredient;
 
     public const int oliveWeight = 1;
     public const int cheesWeight = 1;
     public const int mozzaWeight = 1;
     public const int anchoWeight = 2;
-    public const int crustWeight = 3;
     public const int oilllWeight = 1;
+    public const int pepprWeight = 1;
 
     public int Weight
     {
@@ -31,10 +31,10 @@ public class Collectibles : MonoBehaviour
                     return oliveWeight;
                 case Ingredient.oil:
                     return oilllWeight;
-                case Ingredient.crust:
-                    return crustWeight;
                 case Ingredient.anchovy:
                     return anchoWeight;
+                case Ingredient.pepper:
+                    return pepprWeight;
                 default:
                     Debug.LogWarning("INGRDIENT NOT IMPLEMENTED, WEIGHT SET TO 1");
                     return 1;
@@ -59,8 +59,6 @@ public class Collectibles : MonoBehaviour
                 rd.material.mainTexture = TextureManager.Instance.OliveTex;
                 break;
             case Ingredient.oil:
-                break;
-            case Ingredient.crust:
                 break;
             case Ingredient.anchovy:
                 break;
@@ -93,11 +91,11 @@ public class Collectibles : MonoBehaviour
             case Ingredient.oil:
                 PlayerBehavior.Instance.oilllNbr++;
                 break;
-            case Ingredient.crust:
-                PlayerBehavior.Instance.crustNbr++;
-                break;
             case Ingredient.anchovy:
                 PlayerBehavior.Instance.anchoNbr++;
+                break;
+            case Ingredient.pepper:
+                PlayerBehavior.Instance.pepprNbr++;
                 break;
             default:
                 break;

@@ -36,8 +36,8 @@ public class PlayerBehavior : MonoBehaviour
                 cheesNbr * Collectibles.cheesWeight +
                 mozzaNbr * Collectibles.mozzaWeight +
                 anchoNbr * Collectibles.anchoWeight +
-                crustNbr * Collectibles.crustWeight +
-                oilllNbr * Collectibles.oilllWeight;
+                oilllNbr * Collectibles.oilllWeight +
+                pepprNbr * Collectibles.pepprWeight;
         }
     }
 
@@ -45,8 +45,8 @@ public class PlayerBehavior : MonoBehaviour
     public int cheesNbr = 0;
     public int mozzaNbr = 0;
     public int anchoNbr = 0;
-    public int crustNbr = 0;
     public int oilllNbr = 0;
+    public int pepprNbr = 0;
 
     private void Awake()
     {
@@ -125,8 +125,8 @@ public class PlayerBehavior : MonoBehaviour
         cheesNbr = 0;
         mozzaNbr = 0;
         anchoNbr = 0;
-        crustNbr = 0;
         oilllNbr = 0;
+        pepprNbr = 0;
         OnUseObject.Invoke();
     }
 

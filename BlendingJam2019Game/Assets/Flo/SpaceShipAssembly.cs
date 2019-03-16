@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,47 +7,74 @@ public class SpaceShipAssembly : MonoBehaviour
 {
     private PlayerBehavior player { get { return PlayerBehavior.Instance; } }
 
-    public int oliveNeeded = 3;
-    public int cheesNeeded = 1;
-    public int mozzaNeeded = 1;
-    public int anchoNeeded = 1;
-    public int crustNeeded = 1;
-    public int oilllNeeded = 1;
+    private int OliveNeeded = 0;
+    private int CheesNeeded = 0;
+    private int MozzaNeeded = 0;
+    private int AnchoNeeded = 0;
+    private int OilllNeeded = 0;
 
-    private Renderer olivePlaceHolder;
-    private Renderer cheesPlaceHolder;
-    private Renderer mozzaPlaceHolder;
-    private Renderer anchoPlaceHolder;
-    private Renderer crustPlaceHolder;
-    private Renderer oilllPlaceHolder;
+    [SerializeField] private Renderer[] olivePlaceholders;
+    [SerializeField] private Renderer[] cheesPlaceholders;
+    [SerializeField] private Renderer[] mozzaPlaceholders;
+    [SerializeField] private Renderer[] anchoPlaceholders;
+    [SerializeField] private Renderer[] oilllPlaceholders;
+
+    [SerializeField] private Material trnspMat;
+    [SerializeField] private Material oliveMat;
+    [SerializeField] private Material cheesMat;
+    [SerializeField] private Material mozzaMat;
+    [SerializeField] private Material anchoMat;
+    [SerializeField] private Material oilllMat;
 
     private void Awake()
     {
-        Renderer[] rdArray = GetComponentsInChildren<Renderer>();
-        olivePlaceHolder = rdArray[1];
-        cheesPlaceHolder = rdArray[2];
-        mozzaPlaceHolder = rdArray[3];
-        anchoPlaceHolder = rdArray[4];
-        crustPlaceHolder = rdArray[5];
-        oilllPlaceHolder = rdArray[6];
+        foreach (Renderer rd in GetComponentsInChildren<Renderer>())
+        {
+            rd.material = trnspMat;
+        }
+
+        OliveNeeded = olivePlaceholders.Length;
+        CheesNeeded = cheesPlaceholders.Length;
+        MozzaNeeded = mozzaPlaceholders.Length;
+        AnchoNeeded = anchoPlaceholders.Length;
+        OilllNeeded = oilllPlaceholders.Length;
 
     }
 
     public void PlaceIngredients()
     {
-        if (oliveNeeded > 0 && player.oliveNbr > 0) { int tmp = oliveNeeded - player.oliveNbr; oliveNeeded = Mathf.Max(0, tmp); player.oliveNbr = Mathf.Max(0, -tmp); }
-        if (cheesNeeded > 0 && player.cheesNbr > 0) { int tmp = cheesNeeded - player.cheesNbr; cheesNeeded = Mathf.Max(0, tmp); player.cheesNbr = Mathf.Max(0, -tmp); }
-        if (mozzaNeeded > 0 && player.mozzaNbr > 0) { int tmp = mozzaNeeded - player.mozzaNbr; mozzaNeeded = Mathf.Max(0, tmp); player.mozzaNbr = Mathf.Max(0, -tmp); }
-        if (anchoNeeded > 0 && player.anchoNbr > 0) { int tmp = anchoNeeded - player.anchoNbr; anchoNeeded = Mathf.Max(0, tmp); player.anchoNbr = Mathf.Max(0, -tmp); }
-        if (crustNeeded > 0 && player.crustNbr > 0) { int tmp = crustNeeded - player.crustNbr; crustNeeded = Mathf.Max(0, tmp); player.crustNbr = Mathf.Max(0, -tmp); }
-        if (oilllNeeded > 0 && player.oilllNbr > 0) { int tmp = oilllNeeded - player.oilllNbr; oilllNeeded = Mathf.Max(0, tmp); player.oilllNbr = Mathf.Max(0, -tmp); }
+        PlaceOneIngred(ref OliveNeeded, ref player.oliveNbr, ref olivePlaceholders, ref oliveMat);
+        PlaceOneIngred(ref CheesNeeded, ref player.cheesNbr, ref cheesPlaceholders, ref cheesMat);
+        PlaceOneIngred(ref MozzaNeeded, ref player.mozzaNbr, ref mozzaPlaceholders, ref mozzaMat);
+        PlaceOneIngred(ref AnchoNeeded, ref player.anchoNbr, ref anchoPlaceholders, ref anchoMat);
+        PlaceOneIngred(ref OilllNeeded, ref player.oilllNbr, ref oilllPlaceholders, ref oilllMat);
 
-        if (oliveNeeded == 0) { olivePlaceHolder.material.color = Color.magenta; }
-        if (cheesNeeded == 0) { cheesPlaceHolder.material.color = Color.magenta; }
-        if (mozzaNeeded == 0) { mozzaPlaceHolder.material.color = Color.magenta; }
-        if (anchoNeeded == 0) { anchoPlaceHolder.material.color = Color.magenta; }
-        if (crustNeeded == 0) { crustPlaceHolder.material.color = Color.magenta; }
-        if (oilllNeeded == 0) { oilllPlaceHolder.material.color = Color.magenta; }
+        CheckWin();
+    }
 
+    private void CheckWin()
+    {
+        if (OliveNeeded == 0 &&
+             CheesNeeded == 0 &&
+             MozzaNeeded == 0 &&
+             AnchoNeeded == 0 &&
+             OilllNeeded == 0)
+        {
+            Debug.LogError("WINGAME NOT IMPLEMENTED");
+        }
+    }
+
+    private void PlaceOneIngred(ref int nbrNeeded, ref int playerNbr, ref Renderer[] rdTab, ref Material newMat)
+    {
+        int need = nbrNeeded;
+        for (int i = rdTab.Length - need; i < rdTab.Length; i++)
+        {
+            if (playerNbr > 0 && nbrNeeded > 0)
+            {
+                playerNbr--;
+                nbrNeeded--;
+                rdTab[i].material = newMat;
+            }
+        }
     }
 }
