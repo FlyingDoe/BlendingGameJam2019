@@ -32,11 +32,16 @@ public class PizzaSliceBehaviour : MonoBehaviour
                 pourcentages.RemoveAt(i);
         }
 
+        float sum = 0.0f;
+        for (int i = 0; i < pourcentages.Count; ++i)
+            sum += pourcentages[i];
+
         // envoyer les pourcentages vers les spawners de chaque pizza
         for (int i = 0; i < pizzaPartsSpawner.Count; ++i)
         {
             pizzaPartsSpawner[i].tag = tag;
-            pizzaPartsSpawner[i].setIngredients(pourcentages, ingredientsType);
+            if(sum != 0.0f)
+                pizzaPartsSpawner[i].setIngredients(pourcentages, ingredientsType);
         }
     }
 
