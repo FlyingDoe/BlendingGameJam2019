@@ -19,8 +19,16 @@ public class Pizza : MonoBehaviour {
 
     public void StopTurning()
     {
-        isTurning = false;
+        StartCoroutine(DelayPizzaRestart(10));
     }
+
+    IEnumerator DelayPizzaRestart(int time)
+    {
+        isTurning = false;
+        yield return new WaitForSeconds(time);
+        isTurning = true;
+    }
+
     // Update is called once per frame
     void Update () {
         if(isTurning)transform.Rotate(Vector3.up * (turningSpeed * Time.deltaTime));

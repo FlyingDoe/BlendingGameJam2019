@@ -108,6 +108,18 @@ public class PlayerBehavior : MonoBehaviour
                     ThrowAwayAllIngredient();
                 }
             }
+            else if (hit.collider.tag == "AxeCentral")
+            {
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if(cheesNbr > 0)
+                    {
+                        cheesNbr--;
+                        GameObject.Find("PizzaSpin").GetComponent<Pizza>().StopTurning();
+                    }
+                }
+            }
 
         }
         else if (camTarget != null)
