@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1993990455}
   - component: {fileID: 1993990459}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Bin
   m_TagString: Bin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
