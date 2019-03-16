@@ -41,7 +41,7 @@ public class CanvasManagerBehaviour : MonoBehaviour
             string sceneName = splitted[splitted.Length - 1];
             print(sceneName);
 
-            if (sceneName.StartsWith("MyMain"))
+            if (sceneName.StartsWith("_main"))
             {
                 if(first)
                 {
@@ -65,19 +65,8 @@ public class CanvasManagerBehaviour : MonoBehaviour
 
     public void OnPlayButtonClicked()
     {
-        
-        print("charge scene = " + currentGameSceneBuildIndex);
 
-        // check si la scene est deja chargee, la decharger
-        Scene currentGameScene = SceneManager.GetSceneByBuildIndex(currentGameSceneBuildIndex);
-        if (currentGameScene.isLoaded == true)
-        {
-            SceneManager.UnloadSceneAsync(currentGameSceneBuildIndex);
-        }
-        // charger la scene de jeu puis desactiver le menu
-        SceneManager.LoadScene(currentGameSceneBuildIndex, LoadSceneMode.Additive);
-        mainMenu.SetActive(false);
-        winMenu.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 
     public void OnQuitButtonQuit()

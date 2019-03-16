@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Guillaume/HomeScene.unity
+    path: Assets/_Custom assets/_Scenes/HomeScene.unity
     guid: e3daf81818f05564e848beb23e272d72
   - enabled: 1
-    path: Assets/Guillaume/MyMain.unity
-    guid: c6a7545708e8bc8438d3cd1b0593414d
+    path: Assets/_Custom assets/_Scenes/_main.unity
+    guid: ccc63d251141acb42a01e904d9357e47
