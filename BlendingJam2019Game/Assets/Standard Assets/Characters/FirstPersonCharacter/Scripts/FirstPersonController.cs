@@ -251,6 +251,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         break;
                     case "JumpingMozza":
                         Debug.Log("jumping on mozza");
+                        GetInput(out speed);
                         m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
                         m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
 
