@@ -124,7 +124,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         // instantiation des ingredients
         for (int i = 0; i < ingredientsType.Length; ++i)
         {
-            print("instantiate " + numIngredients[i] + " x " + i);
+            //print("instantiate " + numIngredients[i] + " x " + i);
             for (int j = 0; j < numIngredients[i]; ++j)
             {
                 Collectibles currentObject = Instantiate(ingredientsType[i], transform);
@@ -143,7 +143,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
 
             ingredientSpawned[i].transform.position = spawnCopy[idx].transform.position;
             ingredientSpawned[i].transform.parent = pizzaPart.transform;
-            ingredientSpawned[i].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            ingredientSpawned[i].transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
             //print( i + " : " + ingredientSpawned[i].transform.localScale.x + " " + ingredientSpawned[i].transform.localScale.y + " " + ingredientSpawned[i].transform.localScale.z);
             spawnCopy.RemoveAt(idx);
         }
@@ -158,7 +158,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
         {
             numIngredients.Add((int)(spawnPoints.Count * pourcentages[i]));
             sumIngredient += numIngredients[i];
-            print("ingredients " + i + " : " + numIngredients[i]);
+            //print("ingredients " + i + " : " + numIngredients[i]);
         }
         // check somme du nombre total d'ingredient
         while (sumIngredient < spawnPoints.Count)
@@ -185,7 +185,7 @@ public class IngredientSpawnerBehaviour : MonoBehaviour
             if (tr[i].gameObject.tag == "SpawnPosition")
                 spawnPoints.Add(tr[i].gameObject);
         }
-        print("num spawnPoints = " + spawnPoints.Count);
+        //print("num spawnPoints = " + spawnPoints.Count);
     }
 
     // Update is called once per frame

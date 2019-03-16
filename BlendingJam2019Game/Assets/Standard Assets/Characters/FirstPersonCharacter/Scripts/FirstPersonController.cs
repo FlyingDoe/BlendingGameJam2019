@@ -133,7 +133,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 switch (hitInfo.collider.tag)
                 {
                     case "FoodNormal":
-                        Debug.Log("walking on normal food");
+                        //Debug.Log("walking on normal food");
                         GetInput(out speed);
                         m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
                         m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
@@ -163,7 +163,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         m_MouseLook.UpdateCursorLock();
                         break;
                     case "FoodCollant":
-                        Debug.Log("walking on collant food");
+                       // Debug.Log("walking on collant food");
                         GetInput(out speed);
                         m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
                         m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
@@ -193,7 +193,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         m_MouseLook.UpdateCursorLock();
                         break;
                     case "FoodGlissant":
-                        Debug.Log("walking on glissant food");
+                        //Debug.Log("walking on glissant food");
                         if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && !isSliding)
                         {
                             GetInput(out speed);
@@ -250,7 +250,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         m_MouseLook.UpdateCursorLock();
                         break;
                     case "JumpingMozza":
-                        Debug.Log("jumping on mozza");
+                        //Debug.Log("jumping on mozza");
                         GetInput(out speed);
                         m_MoveDir.x = desiredMove.x * (speed * speedMultiplier) / 2;
                         m_MoveDir.z = desiredMove.z * (speed * speedMultiplier) / 2;
@@ -279,9 +279,39 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                         m_MouseLook.UpdateCursorLock();
                         break;
-                       
+                    case "FoodCentralPiece":
+                        //Debug.Log("on central piece");
+                        GetInput(out speed);
+                        m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
+                        m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
+
+
+                        if (m_CharacterController.isGrounded)
+                        {
+                            m_MoveDir.y = -m_StickToGroundForce;
+
+                            if (m_Jump)
+                            {
+                                m_MoveDir.y = m_JumpSpeed;
+                                PlayJumpSound();
+                                m_Jump = false;
+                                m_Jumping = true;
+                            }
+                        }
+                        else
+                        {
+                            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                        }
+                        m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+                        ProgressStepCycle(speed * speedMultiplier);
+                        UpdateCameraPosition(speed * speedMultiplier);
+
+                        m_MouseLook.UpdateCursorLock();
+                        break;
+
                     default:
-                        Debug.Log("walking on else");
+                       // Debug.Log("walking on else");
                         m_MoveDir.x = desiredMove.x * speed * speedMultiplier;
                         m_MoveDir.z = desiredMove.z * speed * speedMultiplier;
 
@@ -311,7 +341,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         break;
                 }
             }
-            Debug.Log(speed);
         }
 
 

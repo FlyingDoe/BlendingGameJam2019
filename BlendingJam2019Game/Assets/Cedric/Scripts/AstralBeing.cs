@@ -7,7 +7,7 @@ public class AstralBeing : MonoBehaviour
     private RaycastHit hit;
     private Vector3 eyePosition;
     private Vector3 lookTowards;
-    private float lookDistance = 40.0f;
+    private float lookDistance = 50.0f;
     private int moveDirection = 3;
     public int moveSpeed = 3;
     private Vector3 initPos;
@@ -45,7 +45,7 @@ public class AstralBeing : MonoBehaviour
             eyePosition = transform.position + transform.forward * 0.4f;
             lookTowards = transform.forward;
 
-            if (Physics.Raycast(eyePosition, lookTowards, out hit, lookDistance))
+            if (Physics.Raycast(eyePosition, lookTowards, out hit, transform.localScale.x /1.5f))
             {
                 if (hit.collider.tag == "FoodNormal" || hit.collider.tag == "FoodCollant" || hit.collider.tag == "FoodGlissant" || hit.collider.tag == "JumpingMozza")
                 {
@@ -53,7 +53,12 @@ public class AstralBeing : MonoBehaviour
                     hit.transform.gameObject.SetActive(false);
                     canChomp = true;
                     burst.Play();
-                    transform.localScale *= 1.05f;
+                    transform.localScale *= 1.03f;
+                }
+                else if(hit.collider.tag == "FoodCentralPiece")
+                {
+                    moveDirection = -moveSpeed;
+                    canChomp = true;
                 }
 
             }
