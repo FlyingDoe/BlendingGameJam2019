@@ -11,6 +11,8 @@ TagManager:
   - Collectibles
   - Bin
   - SpaceShip
+  - SpawnPosition
+  - Menu
   layers:
   - Default
   - TransparentFX
