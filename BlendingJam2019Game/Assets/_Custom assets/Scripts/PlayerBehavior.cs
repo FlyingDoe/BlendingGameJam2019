@@ -148,9 +148,18 @@ public class PlayerBehavior : MonoBehaviour
             OnUseObject.Invoke();
         }
 
+        if (transform.position.y < -40)
+        {
+            PlayerFail();
+        }
 
 
         Debug.DrawRay(eyePosition, lookTowards * lookDistance, colRay);
+    }
+
+    public void PlayerFail()
+    {
+        CanvasManagerBehaviour.instance.OnPlayerFailed();
     }
 
     // -------------------------------------------------------------

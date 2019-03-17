@@ -17,6 +17,8 @@ public class AstralBeing : MonoBehaviour
     public ParticleSystem burst;
     private bool hitByMissile;
 
+    int partEaten = 0;
+
     AudioSource aS_growling;
     AudioSource aS_effect;
     Animator anim;
@@ -58,6 +60,10 @@ public class AstralBeing : MonoBehaviour
 
             HitByMissile();
         }
+        else if(other.tag == "Player")
+        {
+            PlayerBehavior.Instance.PlayerFail();
+        }
     }
 
 
@@ -80,6 +86,11 @@ public class AstralBeing : MonoBehaviour
                     hit.transform.gameObject.SetActive(false);
                     canChomp = true;
                     burst.Play();
+                    partEaten++;
+                    if (partEaten >=24)
+                    {
+                        PlayerBehavior.Instance.PlayerFail();
+                    }
                     transform.localScale *= 1.03f;
                 }
                 else if (hit.collider.tag == "FoodCentralPiece")

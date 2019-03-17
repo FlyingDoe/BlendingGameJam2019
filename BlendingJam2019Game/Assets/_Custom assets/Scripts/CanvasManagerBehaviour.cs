@@ -45,13 +45,14 @@ public class CanvasManagerBehaviour : MonoBehaviour
         winMenu.SetActive(false);
         failMenu.SetActive(false);
         controlMenu.SetActive(false);
+        loadingScreenObj.gameObject.SetActive(false);
     }
 
     // Use this for initialization
     void Start()
     {
 
-        
+
 
         // cherche les index des scenes de jeux
         bool first = true;
