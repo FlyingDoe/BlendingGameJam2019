@@ -19,6 +19,8 @@ TagManager:
   - AxeCentral
   - Ennemy
   - Missile
+  - FailMenu
+  - ControlMenu
   layers:
   - Default
   - TransparentFX
