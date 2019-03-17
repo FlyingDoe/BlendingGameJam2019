@@ -26,11 +26,15 @@ public class PauseMenuBehaviour : MonoBehaviour
             isPaused = !isPaused;
             if (isPaused)
             {
+                CanvasManagerBehaviour.instance.UnlockAndShowCursor();
+
                 menu.SetActive(true);
                 Time.timeScale = 0.0f;
             }
             else
             {
+                CanvasManagerBehaviour.instance.LockAndHideCursor();
+
                 menu.SetActive(false);
                 Time.timeScale = 1.0f;
             }
@@ -41,6 +45,8 @@ public class PauseMenuBehaviour : MonoBehaviour
     {
         menu.SetActive(false);
         Time.timeScale = 1.0f;
+        CanvasManagerBehaviour.instance.LockAndHideCursor();
+
     }
 
     public void OnRetryButtonClicked()
@@ -48,6 +54,7 @@ public class PauseMenuBehaviour : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         menu.SetActive(false);
         Time.timeScale = 1.0f;
+        CanvasManagerBehaviour.instance.LockAndHideCursor();
         CanvasManagerBehaviour.instance.OnPlayButtonClicked();
     }
 

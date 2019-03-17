@@ -91,7 +91,10 @@ public class CanvasManagerBehaviour : MonoBehaviour
         mainMenu.SetActive(false);
         loadingScreenObj.gameObject.SetActive(true);
 
-        async = SceneManager.LoadSceneAsync(1);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        async = SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
         async.allowSceneActivation = false;
         while (async.isDone == false)
         {
@@ -145,5 +148,17 @@ public class CanvasManagerBehaviour : MonoBehaviour
         print("OnBackToMenuClicked");
         controlMenu.SetActive(false);
         mainMenu.SetActive(true);
+    }
+
+    public void LockAndHideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void UnlockAndShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 }
