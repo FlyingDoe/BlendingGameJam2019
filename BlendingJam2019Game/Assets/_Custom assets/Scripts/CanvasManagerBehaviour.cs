@@ -11,12 +11,6 @@ public class CanvasManagerBehaviour : MonoBehaviour
     // menu principal
     private GameObject mainMenu;
 
-    // ecran si Win
-    private GameObject winMenu;
-
-    // ecran si fail
-    private GameObject failMenu;
-
     // ecran pour montrer les commandes
     private GameObject controlMenu;
 
@@ -30,30 +24,38 @@ public class CanvasManagerBehaviour : MonoBehaviour
 
     [SerializeField] private Transform loadingScreenObj;
 
-    // nextlevel button en public (un peu degueu mais va plus vite)
-    public GameObject nextLevelButton;
+    public MusicManager musicMenu;
 
     private void Awake()
     {
-        instance = this;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-        winMenu = GameObject.FindGameObjectWithTag("WinMenu");
-        failMenu = GameObject.FindGameObjectWithTag("FailMenu");
-        controlMenu = GameObject.FindGameObjectWithTag("ControlMenu");
+        if (instance)
+        {
+            Destroy(instance);
+            instance = this;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
-        winMenu.SetActive(false);
-        failMenu.SetActive(false);
-        controlMenu.SetActive(false);
-        loadingScreenObj.gameObject.SetActive(false);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+            controlMenu = GameObject.FindGameObjectWithTag("ControlMenu");
+
+            controlMenu.SetActive(false);
+            loadingScreenObj.gameObject.SetActive(false);
+        }
+
     }
 
     // Use this for initialization
     void Start()
     {
-
-
-
         // cherche les index des scenes de jeux
         bool first = true;
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; ++i)
@@ -88,13 +90,13 @@ public class CanvasManagerBehaviour : MonoBehaviour
     {
         AsyncOperation async;
 
-        mainMenu.SetActive(false);
-        loadingScreenObj.gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            mainMenu.SetActive(false);
+            loadingScreenObj.gameObject.SetActive(true);
+        }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        async = SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
+        async = SceneManager.LoadSceneAsync(1);
         async.allowSceneActivation = false;
         while (async.isDone == false)
         {
@@ -102,6 +104,8 @@ public class CanvasManagerBehaviour : MonoBehaviour
             if (async.progress == 0.9f)
             {
                 //slider.value = 1f;
+                MusicManager.Instance.aS.clip = SfxManager.Instance.Music_stress;
+                MusicManager.Instance.aS.Play();
                 async.allowSceneActivation = true;
             }
             yield return null;
@@ -115,25 +119,33 @@ public class CanvasManagerBehaviour : MonoBehaviour
 
     public void OnPlayerWin()
     {
-        // decharger la scene de jeu puis afficher l'ecran de Win !!!
-        SceneManager.UnloadSceneAsync(currentGameSceneBuildIndex);
-        winMenu.SetActive(true);
-
-        // s'il y a un niveau suivant => bouton NextLevel
-        if (currentGameSceneBuildIndex == lastGameSceneBuildIndex)
-            nextLevelButton.SetActive(false);
-        else
-        {
-            nextLevelButton.SetActive(true);
-            ++currentGameSceneBuildIndex;
-        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(2);
+        MusicManager.Instance.aS.clip = SfxManager.Instance.Music_calm;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void OnPlayerFailed()
     {
-        // decharger la scene de jeu puis afficher l'ecran de Win !!!
-        SceneManager.UnloadSceneAsync(currentGameSceneBuildIndex);
-        failMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(3);
+        MusicManager.Instance.aS.clip = SfxManager.Instance.Music_calm;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void BackToMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(0);
+        MusicManager.Instance.aS.clip = SfxManager.Instance.Music_calm;
+        MusicManager.Instance.aS.Play();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void OnControlButtonClicked()
@@ -148,17 +160,5 @@ public class CanvasManagerBehaviour : MonoBehaviour
         print("OnBackToMenuClicked");
         controlMenu.SetActive(false);
         mainMenu.SetActive(true);
-    }
-
-    public void LockAndHideCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    public void UnlockAndShowCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 }

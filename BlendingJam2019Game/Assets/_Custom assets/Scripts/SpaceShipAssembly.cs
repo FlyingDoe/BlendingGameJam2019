@@ -116,12 +116,12 @@ public class SpaceShipAssembly : MonoBehaviour
         // 1) fusee giggle pendant qq secondes
         StartCoroutine(Giggle(10.0f));
         // 2) fusee decole
-        
+
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L)) Launch();
+        if (Input.GetKeyDown(KeyCode.L)) Launch();
         if (canMove)
         {
             pS.Play();
@@ -133,7 +133,7 @@ public class SpaceShipAssembly : MonoBehaviour
 
     private IEnumerator Giggle(float giggleTime)
     {
-        
+
         Quaternion initialRotation = transform.localRotation;
         //Quaternion.Euler(Vector3.SmoothDamp(transform.rotation.eulerAngles, target, ref velocity, Time.fixedTime));
         olive1.Play();
@@ -147,9 +147,10 @@ public class SpaceShipAssembly : MonoBehaviour
                 UnityEngine.Random.Range(initialRotation.z - 1, initialRotation.z + 1));
         }
         transform.localRotation = initialRotation;
-        canMove = true; 
+        canMove = true;
+
+        yield return new WaitForSeconds(6f);
+        CanvasManagerBehaviour.instance.OnPlayerWin();
     }
-
-
 
 }

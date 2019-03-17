@@ -9,54 +9,53 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1407878703636316}
+  m_RootGameObject: {fileID: 1358961221377718}
   m_IsPrefabParent: 1
---- !u!1 &1407878703636316
+--- !u!1 &1358961221377718
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4879760661424798}
-  - component: {fileID: 114175680651910424}
-  - component: {fileID: 114059187232693768}
-  - component: {fileID: 114782867399702616}
-  - component: {fileID: 82209799973331742}
+  - component: {fileID: 4384221215621388}
+  - component: {fileID: 82786601291252970}
+  - component: {fileID: 114797914361716430}
+  - component: {fileID: 114471801435900812}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: sceneManager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4879760661424798
+--- !u!4 &4384221215621388
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407878703636316}
+  m_GameObject: {fileID: 1358961221377718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82209799973331742
+--- !u!82 &82786601291252970
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407878703636316}
+  m_GameObject: {fileID: 1358961221377718}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 99d3ac189f6467348871ce4ffcbb4859, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -123,35 +122,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114059187232693768
+--- !u!114 &114471801435900812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407878703636316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8dff224f848fe94d82c6fb66039469f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OliveTex: {fileID: 2800000, guid: fcf27dd7da0296347aee1e085e309dc0, type: 3}
---- !u!114 &114175680651910424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407878703636316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a68c5f6f87dd04ab870b0f0db24aa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114782867399702616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407878703636316}
+  m_GameObject: {fileID: 1358961221377718}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac21a13b5976b14fa350134fa96adc8, type: 3}
@@ -162,8 +138,21 @@ MonoBehaviour:
   sfx_cork: {fileID: 8300000, guid: 20047ee042b840641b159b195144cc8c, type: 3}
   sfx_growlLoop: {fileID: 8300000, guid: 2ec606b982e8a594186467156b353996, type: 3}
   sfx_eat: {fileID: 8300000, guid: 0e529622d60f472498afccafe74a0f43, type: 3}
-  sfx_pain: {fileID: 0}
+  sfx_pain: {fileID: 8300000, guid: 957681e2f35895645ab8502d47d95d99, type: 3}
   sfx_squish:
   - {fileID: 8300000, guid: 5c4102858019bb24ab2926d6f54ff5e1, type: 3}
   - {fileID: 8300000, guid: a2dfa0c8dd3778249be8be6bb88fee30, type: 3}
   - {fileID: 8300000, guid: 3b42bccec7531a14cb84a24df00f86c6, type: 3}
+  music_calm: {fileID: 8300000, guid: 99d3ac189f6467348871ce4ffcbb4859, type: 3}
+  music_stress: {fileID: 8300000, guid: def7bb62ed95b1549881152cc5365e47, type: 3}
+--- !u!114 &114797914361716430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358961221377718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a68c5f6f87dd04ab870b0f0db24aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

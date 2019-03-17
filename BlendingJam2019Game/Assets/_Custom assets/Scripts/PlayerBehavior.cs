@@ -105,14 +105,14 @@ public class PlayerBehavior : MonoBehaviour
             }
             else if (hit.collider.tag == "SpaceShip")
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire2"))
                 {
                     TryToPlaceObj(hit.collider.GetComponent<SpaceShipAssembly>());
                 }
             }
             else if (hit.collider.tag == "Bin")
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire3"))
                 {
                     ThrowAwayAllIngredient();
                 }
@@ -137,11 +137,11 @@ public class PlayerBehavior : MonoBehaviour
             camTarget = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetButtonDown("Fire2"))
         {
             StartCoroutine(ShootMissile());
         }
-        if (Input.GetKeyDown(KeyCode.P) && pepniNbr > 0)
+        if (Input.GetButtonDown("Fire3") && pepniNbr > 0)
         {
             GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().MangerLePiment();
             pepprNbr--;
@@ -203,9 +203,9 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (pepprNbr > 0 && oilllNbr > 0)
         {
-            anim.SetTrigger("Shake");
             pepprNbr--;
             oilllNbr--;
+            anim.SetTrigger("Shake");
             yield return new WaitForSeconds(1.1f);
 
             MissileBehavior missile = Instantiate(missilePrefab, transform.position + transform.forward * 0.5f, Quaternion.identity);

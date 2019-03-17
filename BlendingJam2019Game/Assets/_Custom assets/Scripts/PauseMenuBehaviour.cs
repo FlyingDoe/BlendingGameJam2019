@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuBehaviour : MonoBehaviour
 {
     // canvas
-    private GameObject menu;
+    [SerializeField] private RectTransform menu;
 
     // is the game pause or not
     private bool isPaused = false;
@@ -14,8 +14,7 @@ public class PauseMenuBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        menu = GameObject.FindGameObjectWithTag("Menu");
-        menu.SetActive(false);
+        menu.gameObject.SetActive(isPaused);
     }
 
     // Update is called once per frame
@@ -26,16 +25,19 @@ public class PauseMenuBehaviour : MonoBehaviour
             isPaused = !isPaused;
             if (isPaused)
             {
-                CanvasManagerBehaviour.instance.UnlockAndShowCursor();
+                //CanvasManagerBehaviour.instance.UnlockAndShowCursor();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
 
-                menu.SetActive(true);
+                menu.gameObject.SetActive(true);
                 Time.timeScale = 0.0f;
             }
             else
             {
-                CanvasManagerBehaviour.instance.LockAndHideCursor();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
-                menu.SetActive(false);
+                menu.gameObject.SetActive(false);
                 Time.timeScale = 1.0f;
             }
         }
@@ -43,18 +45,17 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     public void OnResumeButtonClicked()
     {
-        menu.SetActive(false);
+        menu.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
-        CanvasManagerBehaviour.instance.LockAndHideCursor();
-
+        //CanvasManagerBehaviour.instance.LockAndHideCursor();
     }
 
     public void OnRetryButtonClicked()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        menu.SetActive(false);
+        menu.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
-        CanvasManagerBehaviour.instance.LockAndHideCursor();
+        // CanvasManagerBehaviour.instance.LockAndHideCursor();
         CanvasManagerBehaviour.instance.OnPlayButtonClicked();
     }
 

@@ -13,6 +13,9 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private AudioClip sfx_eat;
     [SerializeField] private AudioClip sfx_pain;
     [SerializeField] private AudioClip[] sfx_squish;
+    [SerializeField] private AudioClip music_calm;
+    [SerializeField] private AudioClip music_stress;
+
 
     public AudioClip Sfx_rocketLoop
     {
@@ -20,22 +23,12 @@ public class SfxManager : MonoBehaviour
         {
             return sfx_rocketLoop;
         }
-
-        set
-        {
-            sfx_rocketLoop = value;
-        }
     }
     public AudioClip Sfx_explosion
     {
         get
         {
             return sfx_explosion;
-        }
-
-        set
-        {
-            sfx_explosion = value;
         }
     }
     public AudioClip Sfx_squish
@@ -71,6 +64,20 @@ public class SfxManager : MonoBehaviour
         get
         {
             return sfx_pain;
+        }
+    }
+    public AudioClip Music_calm
+    {
+        get
+        {
+            return music_calm;
+        }
+    }
+    public AudioClip Music_stress
+    {
+        get
+        {
+            return music_stress;
         }
     }
 
