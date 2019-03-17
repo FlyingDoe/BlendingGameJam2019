@@ -17,6 +17,9 @@ public class CanvasManagerBehaviour : MonoBehaviour
     // ecran si fail
     private GameObject failMenu;
 
+    // ecran pour montrer les commandes
+    private GameObject controlMenu;
+
     // index de la premiere scene de jeu
     private int firstGameSceneBuildIndex;
     // index de la derniere scene de jeu
@@ -30,14 +33,25 @@ public class CanvasManagerBehaviour : MonoBehaviour
     // nextlevel button en public (un peu degueu mais va plus vite)
     public GameObject nextLevelButton;
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
         instance = this;
 
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
         winMenu = GameObject.FindGameObjectWithTag("WinMenu");
         failMenu = GameObject.FindGameObjectWithTag("FailMenu");
+        controlMenu = GameObject.FindGameObjectWithTag("ControlMenu");
+
+        winMenu.SetActive(false);
+        failMenu.SetActive(false);
+        controlMenu.SetActive(false);
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+
+        
 
         // cherche les index des scenes de jeux
         bool first = true;
@@ -116,5 +130,19 @@ public class CanvasManagerBehaviour : MonoBehaviour
         // decharger la scene de jeu puis afficher l'ecran de Win !!!
         SceneManager.UnloadSceneAsync(currentGameSceneBuildIndex);
         failMenu.SetActive(true);
+    }
+
+    public void OnControlButtonClicked()
+    {
+        print("OnControlButtonClicked");
+        controlMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void OnBackToMenuClicked()
+    {
+        print("OnBackToMenuClicked");
+        controlMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
