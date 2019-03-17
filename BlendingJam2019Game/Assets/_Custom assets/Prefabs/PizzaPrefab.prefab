@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 114978611043466982}
   m_Layer: 0
   m_Name: PizzaSlice7
-  m_TagString: JumpingMozza
+  m_TagString: FoodCollant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1597,7 +1597,7 @@ GameObject:
   - component: {fileID: 114714614342789678}
   m_Layer: 0
   m_Name: PizzaSlice3
-  m_TagString: JumpingMozza
+  m_TagString: FoodNormal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6549,7 +6549,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301156137377924}
   m_LocalRotation: {x: 0.0011160874, y: -0.00025886885, z: -0.0048669633, w: 0.99998754}
-  m_LocalPosition: {x: -7.333, y: 12.92, z: 11.43}
+  m_LocalPosition: {x: -7.333, y: 13.37, z: 11.43}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4063381503097738}
@@ -18787,8 +18787,8 @@ MonoBehaviour:
   pourcentages:
   - 0
   - 0.5
-  - 0.25
-  - 0.25
+  - 0
+  - 0.5
   - 0
 --- !u!114 &114195410242044890
 MonoBehaviour:
@@ -18925,8 +18925,8 @@ MonoBehaviour:
   pourcentages:
   - 0.50000006
   - 0
-  - 0
   - 0.25
+  - 0
   - 0.25
 --- !u!114 &114433056956391936
 MonoBehaviour:
@@ -18945,9 +18945,9 @@ MonoBehaviour:
   - {fileID: 114316179282521872}
   pourcentages:
   - 0
-  - 0.7
+  - 0.5
   - 0
-  - 0.3
+  - 0.5
   - 0
 --- !u!114 &114435946448588786
 MonoBehaviour:
@@ -19005,10 +19005,10 @@ MonoBehaviour:
   - {fileID: 114164410640180756}
   pourcentages:
   - 0
-  - 0.316
-  - 0.35
+  - 0.4
+  - 0.25
   - 0
-  - 0.334
+  - 0.35
 --- !u!114 &114537778643751616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19038,11 +19038,11 @@ MonoBehaviour:
   - {fileID: 114240677778146992}
   - {fileID: 114876304631899264}
   pourcentages:
-  - 0.70000005
-  - 0
-  - 0
-  - 0
+  - 0.5
+  - 0.2
   - 0.3
+  - 0
+  - 0
 --- !u!114 &114600909083937386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19074,8 +19074,8 @@ MonoBehaviour:
   pourcentages:
   - 0
   - 0
-  - 0.5
   - 0.25
+  - 0.5
   - 0.25
 --- !u!114 &114644141909749834
 MonoBehaviour:
@@ -19145,11 +19145,11 @@ MonoBehaviour:
   - {fileID: 114379952633801434}
   - {fileID: 114111363533291588}
   pourcentages:
-  - 0.30099997
+  - 0.3
+  - 0.2
+  - 0.25
   - 0
-  - 0
-  - 0.699
-  - 0
+  - 0.25
 --- !u!114 &114831262959371760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19285,11 +19285,11 @@ MonoBehaviour:
   - {fileID: 114668820509449608}
   - {fileID: 114311946053494628}
   pourcentages:
-  - 0.268
+  - 0.5
   - 0
   - 0
-  - 0.285
-  - 0.236
+  - 0.5
+  - 0
 --- !u!114 &114985824112396224
 MonoBehaviour:
   m_ObjectHideFlags: 1
