@@ -38,12 +38,12 @@ public class SpaceShipAssembly : MonoBehaviour
     public ParticleSystem olive1;
     public ParticleSystem olive2;
     public ParticleSystem olive3;
-    private ParticleSystem particleSystem;
+    private ParticleSystem pS;
 
     private void Awake()
     {
-        particleSystem = GetComponent<ParticleSystem>();
-        particleSystem.Pause();
+        pS = GetComponent<ParticleSystem>();
+        pS.Pause();
         aS = GetComponent<AudioSource>();
 
         foreach (Renderer rd in GetComponentsInChildren<MeshRenderer>())
@@ -124,7 +124,7 @@ public class SpaceShipAssembly : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L)) Launch();
         if (canMove)
         {
-            particleSystem.Play();
+            pS.Play();
             transform.position += new Vector3(0.0f, flyingSpeed, 0.0f);
             if (flyingSpeed < flyingLimit)
                 flyingSpeed += acceleration;

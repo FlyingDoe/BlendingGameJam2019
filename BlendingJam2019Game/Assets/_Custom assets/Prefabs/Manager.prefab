@@ -162,6 +162,7 @@ MonoBehaviour:
   sfx_cork: {fileID: 8300000, guid: 20047ee042b840641b159b195144cc8c, type: 3}
   sfx_growlLoop: {fileID: 8300000, guid: 2ec606b982e8a594186467156b353996, type: 3}
   sfx_eat: {fileID: 8300000, guid: 0e529622d60f472498afccafe74a0f43, type: 3}
+  sfx_pain: {fileID: 0}
   sfx_squish:
   - {fileID: 8300000, guid: 5c4102858019bb24ab2926d6f54ff5e1, type: 3}
   - {fileID: 8300000, guid: a2dfa0c8dd3778249be8be6bb88fee30, type: 3}

@@ -217,7 +217,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825516678219616}
-  m_Mesh: {fileID: 4300000, guid: 0a1d09292b9f6374cbb04521abc7b665, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c1b16cb1596a374b9ec41d3bf5f51dd, type: 3}
 --- !u!54 &54479889619910456
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -550,7 +550,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.52
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -755,7 +755,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.5707963
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1301,8 +1301,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0.5586207, b: 0, a: 0.30588236}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0.5586207, b: 0, a: 0}
+        key2: {r: 0.5661765, g: 0.33970588, b: 0, a: 0.30588236}
         key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1316,9 +1316,9 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 22552
+        atime0: 61295
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -1357,11 +1357,11 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 0.9999
       minScalar: 0.9999
       maxCurve:
@@ -1443,13 +1443,13 @@ ParticleSystem:
         m_RotationOrder: 4
     tilesX: 1
     tilesY: 1
-    animationType: 0
+    animationType: 1
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
     flipU: 0
     flipV: 0
-    randomRow: 1
+    randomRow: 0
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
@@ -3714,7 +3714,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4ee1d2166905bd24388001a1dd3f9a37, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

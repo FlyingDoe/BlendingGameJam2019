@@ -1014,7 +1014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weightSlider: {fileID: 114151676725305902}
   oliveNbr: {fileID: 114204928677117590}
-  cheesNbr: {fileID: 0}
   mozzaNbr: {fileID: 114573610458694568}
   pepniNbr: {fileID: 114630951369508150}
   oilllNbr: {fileID: 114715763531349372}
