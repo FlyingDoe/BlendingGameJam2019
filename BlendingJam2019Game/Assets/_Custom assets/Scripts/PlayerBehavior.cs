@@ -75,61 +75,70 @@ public class PlayerBehavior : MonoBehaviour
         Debug.Log("Player instantiated");
     }
 
+
+    string theTag = "";
+    string theinput = "";
+    bool fire1 = false;
+    bool fire2 = false;
+    bool fire3 = false;
+
     void Update()
     {
         eyePosition = pointOfView.transform.position + pointOfView.transform.forward * 0.4f;
         lookTowards = pointOfView.transform.forward;
 
         colRay = Color.red;
+        theinput = Input.inputString;
+
+        fire1 = Input.GetButtonDown("Fire1");
+        fire2 = Input.GetButtonDown("Fire2");
+        fire3 = Input.GetButtonDown("Fire3");
 
         if (Physics.Raycast(eyePosition, lookTowards, out hit, lookDistance))
         {
-            if (hit.collider.tag == "Collectibles")
+            theTag = hit.collider.tag;
+
+            switch (theTag)
             {
-                Collectibles objLookedAt = hit.collider.gameObject.GetComponent<Collectibles>();
+                case "Collectibles":
+                    Collectibles objLookedAt = hit.collider.gameObject.GetComponent<Collectibles>();
 
-                colRay = Color.green;
-
-                if (objLookedAt.canBePickedUp)
-                {
-
-                    objLookedAt.StartGlowing(maxWeight - (CurrentWeight + objLookedAt.Weight) >= 0);
-
-                    if (Input.GetButtonDown("Fire1"))
+                    colRay = Color.green;
+                    if (objLookedAt.canBePickedUp)
                     {
-                        TryToPickUpObj(objLookedAt);
+                        objLookedAt.StartGlowing(maxWeight - (CurrentWeight + objLookedAt.Weight) >= 0);
+                        if (fire1)
+                        {
+                            TryToPickUpObj(objLookedAt);
+                        }
+                        camTarget = objLookedAt;
                     }
-
-                    camTarget = objLookedAt;
-                }
+                    break;
+                case "SpaceShip":
+                    if (fire1)
+                    {
+                        TryToPlaceObj(hit.collider.GetComponent<SpaceShipAssembly>());
+                    }
+                    break;
+                case "Bin":
+                    if (fire1)
+                    {
+                        ThrowAwayAllIngredient();
+                    }
+                    break;
+                case "AxeCentral":
+                    if (fire1 && mozzaNbr > 0)
+                    {
+                        //slow pillar
+                        Debug.Log("slowed pillar");
+                        pizza.StopTurning();
+                        mozzaNbr--;
+                        ui.UpdateValues();
+                    }
+                    break;
+                default:
+                    break;
             }
-            else if (hit.collider.tag == "SpaceShip")
-            {
-                if (Input.GetButtonDown("Fire2"))
-                {
-                    TryToPlaceObj(hit.collider.GetComponent<SpaceShipAssembly>());
-                }
-            }
-            else if (hit.collider.tag == "Bin")
-            {
-                if (Input.GetButtonDown("Fire3"))
-                {
-                    ThrowAwayAllIngredient();
-                }
-            }
-            else if (hit.collider.tag == "AxeCentral")
-            {
-                Debug.Log("hitting axe");
-                if (Input.GetButtonDown("Fire1") && mozzaNbr > 0)
-                {
-                    //slow pillar
-                    Debug.Log("slowed pillar");
-                    pizza.StopTurning();
-                    mozzaNbr--;
-                    ui.UpdateValues();
-                }
-            }
-
         }
         else if (camTarget != null)
         {
@@ -137,11 +146,11 @@ public class PlayerBehavior : MonoBehaviour
             camTarget = null;
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (fire2)
         {
             StartCoroutine(ShootMissile());
         }
-        if (Input.GetButtonDown("Fire3") && pepniNbr > 0)
+        if (fire3 && pepprNbr > 0)
         {
             GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().MangerLePiment();
             pepprNbr--;
@@ -152,7 +161,6 @@ public class PlayerBehavior : MonoBehaviour
         {
             PlayerFail();
         }
-
 
         Debug.DrawRay(eyePosition, lookTowards * lookDistance, colRay);
     }
@@ -193,7 +201,6 @@ public class PlayerBehavior : MonoBehaviour
     {
         anim.SetTrigger("Place");
         ship.PlaceIngredients();
-        Debug.LogWarning("PLACE OBJ NOT IMPLEMENTED");
         OnUseObject.Invoke();
     }
 

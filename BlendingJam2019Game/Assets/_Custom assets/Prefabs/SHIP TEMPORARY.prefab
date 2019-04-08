@@ -363,13 +363,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576607543013050}
-  m_LocalRotation: {x: -0.7107084, y: -0, z: -0, w: -0.70348686}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0.501, y: 0.36, z: 0.020999908}
-  m_LocalScale: {x: 1, y: 1.0000007, z: 1.0000007}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4887882907572634}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -269.41602, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &4350796085850168
 Transform:
   m_ObjectHideFlags: 1
@@ -415,13 +415,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394081784921268}
-  m_LocalRotation: {x: -0.7107084, y: -0, z: -0, w: -0.70348686}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: -0.516, y: 0.36, z: 0.021}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4887882907572634}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -269.41602, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &4476184473702148
 Transform:
   m_ObjectHideFlags: 1
@@ -1010,7 +1010,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394081784921268}
-  m_Mesh: {fileID: 4300000, guid: 0a1d09292b9f6374cbb04521abc7b665, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c1b16cb1596a374b9ec41d3bf5f51dd, type: 3}
 --- !u!33 &33333882230402146
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1038,7 +1038,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576607543013050}
-  m_Mesh: {fileID: 4300000, guid: 0a1d09292b9f6374cbb04521abc7b665, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c1b16cb1596a374b9ec41d3bf5f51dd, type: 3}
 --- !u!33 &33751255907640878
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1108,7 +1108,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.4513617
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1219,8 +1219,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.7
+  m_Height: 2.06
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!198 &198509893191129786
@@ -1283,7 +1283,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1070770912
+  randomSeed: -420224696
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4644,7 +4644,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1551450792
+  randomSeed: 1715093068
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8005,7 +8005,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1188912833
+  randomSeed: 2008233289
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11411,7 +11411,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -284418571
+  randomSeed: -48997543
   InitialModule:
     serializedVersion: 3
     enabled: 1
